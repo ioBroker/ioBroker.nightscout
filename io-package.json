@@ -1,0 +1,76 @@
+{
+    "common": {
+        "name": "nightscout-server",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Nightscout server",
+        "titleLang": {
+            "en": "Nightscout server",
+            "de": "Nachtscout-Server",
+            "ru": "Ночной сервер",
+            "pt": "Servidor Nightscout",
+            "nl": "Nightscout-server",
+            "fr": "Serveur Nightscout",
+            "it": "Server Nightscout",
+            "es": "Servidor nocturno",
+            "pl": "Serwer Nightscout",
+            "zh-cn": "Nightscout服务器"
+        },
+        "desc": {
+            "en": "Provides nightscout server for sugar monitoring",
+            "de": "Bietet einen Nachtsuchserver für die Zuckerüberwachung",
+            "ru": "Предоставляет сервер nightcout для мониторинга сахара",
+            "pt": "Fornece servidor nightscout para monitoramento de açúcar",
+            "nl": "Biedt nachtcoutserver voor suikercontrole",
+            "fr": "Fournit un serveur nightscout pour la surveillance du sucre",
+            "it": "Fornisce il server nightscout per il monitoraggio dello zucchero",
+            "es": "Proporciona un servidor nightcout para monitoreo de azúcar.",
+            "pl": "Zapewnia serwer nocny do monitorowania cukru",
+            "zh-cn": "为糖监测提供nightscout服务器"
+        },
+        "authors": [
+            "bluefox <dogafox@gmail.com>"
+        ],
+        "keywords": [
+            "sugar monitoring",
+            "nightscout",
+            "we are not waiting"
+        ],
+        "license": "AGPL-3.0",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "nightscout-server.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.nightscout-server/master/admin/nightscout-server.png",
+        "readme": "https://github.com/ioBroker/ioBroker.nightscout-server/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "utility",
+        "compact": true,
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=1.4.2"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}

@@ -4,10 +4,8 @@
  * Created with @iobroker/create-adapter v1.16.0
  */
 
-// The adapter-core module gives you access to the core ioBroker functions
-// you need to create an adapter
 const utils = require('@iobroker/adapter-core');
-const adapterName = require('./package.json').name.split('.').pop().toString();
+const adapterName = (require('./package.json').name.split('.').pop() || '').toString();
 const Nightscout = require('./lib/nightscout');
 const request = require('request');
 const crypto = require('crypto');
@@ -85,7 +83,7 @@ function main() {
 
     if (!adapter.config.language) {
         adapter.getForeignObject('system.config', (err, obj) => {
-            adapter.config.language = obj.common.language || 'en';
+            adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
             Nightscout.startServer(adapter.config);
         });
     } else {

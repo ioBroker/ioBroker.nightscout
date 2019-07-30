@@ -18,34 +18,68 @@
     <script type="text/javascript" src="words.js"></script>
 
     <script type="text/javascript">
-        // This will be called by the admin adapter when the settings page loads
+
+        function showHideSettings() {
+            if ($('#secure').prop('checked')) {
+                $('.col-leEnabled').show();
+
+                if ($('#leEnabled').prop('checked')) {
+                    $('.col-certPublic').hide();
+                    $('.col-certPrivate').hide();
+                    $('.col-certChained').hide();
+                } else {
+                    $('.col-certPublic').show();
+                    $('.col-certPrivate').show();
+                    $('.col-certChained').show();
+                }
+            } else {
+                $('.col-certPublic').hide();
+                $('.col-certPrivate').hide();
+                $('.col-certChained').hide();
+                $('.col-leEnabled').hide();
+            }
+        }
+
         function load(settings, onChange) {
-            // example: select elements with id=key and class=value and insert value
             if (!settings) return;
+
+            getIPs(function(ips) {
+                for (var i = 0; i < ips.length; i++) {
+                    $('#bind').append('<option value="' + ips[i].address + '">' + ips[i].name + '</option>');
+                }
+                $('#bind.value').val(settings.bind).select();
+            });
+
+
             $('.value').each(function () {
                 var $key = $(this);
                 var id = $key.attr('id');
                 if ($key.attr('type') === 'checkbox') {
                     // do not call onChange direct, because onChange could expect some arguments
-                    $key.prop('checked', settings[id])
-                        .on('change', () => onChange())
-                        ;
+                    $key.prop('checked', settings[id]).on('change', function () {
+                        showHideSettings();
+                        onChange();
+                    });
                 } else {
                     // do not call onChange direct, because onChange could expect some arguments
                     $key.val(settings[id])
                         .on('change', () => onChange())
-                        .on('keyup', () => onChange())
-                        ;
+                        .on('keyup', () => onChange());
                 }
             });
+            showHideSettings();
             onChange(false);
+
+            fillSelectCertificates('#certPublic',  'public',  settings.certPublic);
+            fillSelectCertificates('#certPrivate', 'private', settings.certPrivate);
+            fillSelectCertificates('#certChained', 'chained', settings.certChained);
+
+
             // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
-            if (M) M.updateTextFields();
+            M && M.updateTextFields();
         }
 
-        // This will be called by the admin adapter when the user presses the save button
         function save(callback) {
-            // example: select elements with class=value and build settings object
             var obj = {};
             $('.value').each(function () {
                 var $this = $(this);
@@ -55,6 +89,12 @@
                     obj[$this.attr('id')] = $this.val();
                 }
             });
+
+            if ($('#secure').prop('checked') && (!$('#certPrivate').val() || !$('#certPublic').val())) {
+                showToast(null, _('Set certificates or load it first in the system settings (right top).'));
+                return;
+            }
+
             callback(obj);
         }
     </script>
@@ -63,30 +103,97 @@
 
 <body>
 
-    <div class="m adapter-container">
-
-        <div class="row">
-            <div class="col s12 m4 l2">
-                <img src="nightscout-server.png" class="logo">
+<div class="m adapter-container">
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s5 m4"><a href="#tab-server" class="translate active">Server settings</a></li>
+                <li class="tab col s5 m4"><a href="#tab-main" class="translate">Main settings</a></li>
+            </ul>
+        </div>
+        <div id="tab-server" class="col s12 page">
+            <div class="row">
+                <div class="col s6">
+                    <img src="nightscout.png" class="logo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m8 l5">
+                    <select class="value" id="bind"></select>
+                    <label class="translate" for="bind">IP</label>
+                </div>
+                <div class="col s12 m4 l1">
+                    <input class="value" id="port" size="5" maxlength="5" type="number"/>
+                    <label class="translate" for="port">Port</label>
+                </div>
+            </div>
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col s12 m4">
+                    <input class="value" id="secure" type="checkbox" />
+                    <label class="translate" for="secure">Secure(HTTPS)</label>
+                </div>
+                <div class="col s12 m4 col-leEnabled">
+                    <input class="value" id="leEnabled" type="checkbox" data-link="lets-encrypt-certificates"/>
+                    <label for="leEnabled" class="translate">Use Lets Encrypt certificates</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 col-certPublic">
+                    <select id="certPublic" class="value"></select>
+                    <label class="translate" for="certPublic">Public certificate</label>
+                </div>
+                <div class="col s12 m4 col-certPrivate">
+                    <select id="certPrivate" class="value"></select>
+                    <label class="translate" for="certPrivate">Private certificate</label>
+                </div>
+                <div class="col s12 m4 col-certChained">
+                    <select id="certChained" class="value"></select>
+                    <label class="translate" for="certChained">Chained certificate</label>
+                </div>
             </div>
         </div>
-
-        <!-- Put your content here -->
-
-        <!-- For example columns with settings: -->
-        <div class="row">
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="option1" />
-                <label for="option1" class="translate">option1</label>
+        <div id="tab-main" class="col s12 page">
+            <div class="row">
+                <div class="input-field col s12 m6 l4">
+                    <input id="mongo" class="value" type="text" />
+                    <label for="mongo" class="translate">Mongo connection string</label>
+                </div>
             </div>
-
-            <div class="col s6 input-field">
-                <input type="text" class="value" id="option2" />
-                <label for="option2" class="translate">option2</label>
+            <div class="row">
+                <div class="input-field col s12 m6 l4">
+                    <input id="secret" class="value" type="text" />
+                    <label for="secret" class="translate">API Secret</label>
+                    <span class="translate">minimum 12 characters</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field  col s12 m4 l3">
+                    <select id="language" class="value">
+                        <option value="" class="translate">system</option>
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                        <option value="ru">русский</option>
+                        <option value="pt">Portugues</option>
+                        <option value="nl">Nederlands</option>
+                        <option value="fr">français</option>
+                        <option value="it">Italiano</option>
+                        <option value="es">Espanol</option>
+                        <option value="pl">Polski</option>
+                        <option value="zh-cn">简体中文</option>
+                    </select>
+                    <label class="translate" for="language">Language</label>
+                </div>
+                <div class="input-field  col s12 m4 l2">
+                    <select id="units" class="value">
+                        <option value="mg/dl" class="translate">mg/dl</option>
+                        <option value="mmol"  class="translate">mmol</option>
+                    </select>
+                    <label class="translate" for="units">Units</label>
+                </div>
             </div>
         </div>
-
     </div>
+</div>
 
 </body>
 

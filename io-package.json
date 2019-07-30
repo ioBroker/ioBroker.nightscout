@@ -1,6 +1,6 @@
 {
     "common": {
-        "name": "nightscout-server",
+        "name": "nightscout",
         "version": "0.0.1",
         "news": {
             "0.0.1": {
@@ -52,24 +52,34 @@
         "license": "AGPL-3.0",
         "platform": "Javascript/Node.js",
         "main": "main.js",
-        "icon": "nightscout-server.png",
+        "messagebox": true,
+        "icon": "nightscout.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.nightscout-server/master/admin/nightscout-server.png",
-        "readme": "https://github.com/ioBroker/ioBroker.nightscout-server/blob/master/README.md",
+        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.nightscout/master/admin/nightscout.png",
+        "readme": "https://github.com/ioBroker/ioBroker.nightscout/blob/master/README.md",
         "loglevel": "info",
         "mode": "daemon",
         "type": "utility",
         "compact": true,
-        "materialize": true,
-        "dependencies": [
-            {
-                "js-controller": ">=1.4.2"
-            }
-        ]
+        "localLink": "%web_protocol%://%ip%:%web_port%/",
+        "materialize": true
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "secure": false,
+        "port": 1337,
+        "bind": "127.0.0.1",
+        "mongo": "mongodb://localhost:27017/iobroker",
+        "enabled": "careportal basal",
+        "units": "mg/dl",
+        "secret": "12345678901234",
+        "timeFormat": 24,
+        "language": "",
+
+        "certPublic": "",
+        "certPrivate": "",
+        "certChained": "",
+
+        "leEnabled": false
     },
     "objects": [],
     "instanceObjects": []

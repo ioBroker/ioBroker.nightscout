@@ -1,14 +1,14 @@
-![Logo](admin/nightscout-server.png)
+![Logo](admin/nightscout.png)
 # Nightscout server
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.nightscout-server.svg)](https://www.npmjs.com/package/iobroker.nightscout-server)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.nightscout-server.svg)](https://www.npmjs.com/package/iobroker.nightscout-server)
-[![Dependency Status](https://img.shields.io/david/ioBroker/iobroker.nightscout-server.svg)](https://david-dm.org/ioBroker/iobroker.nightscout-server)
-[![Known Vulnerabilities](https://snyk.io/test/github/ioBroker/ioBroker.nightscout-server/badge.svg)](https://snyk.io/test/github/ioBroker/ioBroker.nightscout-server)
+[![NPM version](http://img.shields.io/npm/v/iobroker.nightscout.svg)](https://www.npmjs.com/package/iobroker.nightscout)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.nightscout.svg)](https://www.npmjs.com/package/iobroker.nightscout)
+[![Dependency Status](https://img.shields.io/david/ioBroker/iobroker.nightscout.svg)](https://david-dm.org/ioBroker/iobroker.nightscout)
+[![Known Vulnerabilities](https://snyk.io/test/github/ioBroker/ioBroker.nightscout/badge.svg)](https://snyk.io/test/github/ioBroker/ioBroker.nightscout)
 
-[![NPM](https://nodei.co/npm/iobroker.nightscout-server.png?downloads=true)](https://nodei.co/npm/iobroker.nightscout-server/)
+[![NPM](https://nodei.co/npm/iobroker.nightscout.png?downloads=true)](https://nodei.co/npm/iobroker.nightscout/)
 
-**Tests:**: [![Travis-CI](http://img.shields.io/travis/ioBroker/ioBroker.nightscout-server/master.svg)](https://travis-ci.org/ioBroker/ioBroker.nightscout-server)
+**Tests:**: [![Travis-CI](http://img.shields.io/travis/ioBroker/ioBroker.nightscout/master.svg)](https://travis-ci.org/ioBroker/ioBroker.nightscout)
 
 ## Description
 This adapter starts the nightscout server from this repository: https://github.com/nightscout/cgm-remote-monitor

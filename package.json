@@ -1,12 +1,12 @@
 {
-  "name": "iobroker.nightscout-server",
+  "name": "iobroker.nightscout",
   "version": "0.0.1",
   "description": "Provides nightscout server for sugar monitoring",
   "author": {
     "name": "bluefox",
     "email": "dogafox@gmail.com"
   },
-  "homepage": "https://github.com/ioBroker/ioBroker.nightscout-server",
+  "homepage": "https://github.com/ioBroker/ioBroker.nightscout",
   "license": "AGPL-3.0",
   "engines": {
     "node": "^10.16.0 || ^8.15.1"
@@ -18,10 +18,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.nightscout-server"
+    "url": "https://github.com/ioBroker/ioBroker.nightscout"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^1.0.3"
+    "@iobroker/adapter-core": "^1.0.3",
+    "nightscout": "0.12.2-2",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@iobroker/testing": "^1.2.5",
@@ -53,7 +55,7 @@
     "lint": "eslint"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.nightscout-server/issues"
+    "url": "https://github.com/ioBroker/ioBroker.nightscout/issues"
   },
   "readmeFilename": "README.md"
 }

@@ -51,6 +51,14 @@ function startAdapter(options) {
                 //       method: 'GET',
                 //       body: json,
                 // }
+                if (typeof obj.message === 'string') {
+                    try {
+                        obj.message = JSON.parse(obj.message);
+                    } catch (e) {
+                        return obj.callback && adapter.sendTo(obj.from, obj.command, {error: 'cannot parse message'}, obj.callback);
+                    }
+                }
+
                 const query = {
                     url: URL + obj.message.path,
                     method: (obj.message.method || 'GET').toUpperCase()

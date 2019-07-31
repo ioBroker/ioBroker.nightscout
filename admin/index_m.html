@@ -17,7 +17,23 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="words.js"></script>
 
+    <style>
+        .license_text {
+            padding-bottom: 20px;
+        }
+        .modal-sub-content {
+            width: 100%;
+            overflow: auto;
+            height: calc(100% - 60px);
+        }
+        .m .modal-content {
+            height: calc(100% - 54px)!important;
+            width: 100% !important;
+        }
+    </style>
+
     <script type="text/javascript">
+        var envs;
 
         function showHideSettings() {
             if ($('#secure').prop('checked')) {
@@ -50,6 +66,41 @@
                 $('#bind.value').val(settings.bind).select();
             });
 
+            $('.value-enable[data-value="pump"]').on('change', function () {
+                if ($(this).prop('checked')) {
+                    $('.pump').show();
+                } else {
+                    $('.pump').hide();
+                }
+            });
+
+            $('.value-enable').on('change', function () {
+                onChange();
+            });
+            $('.value-pump').on('change', function () {
+                onChange();
+            });
+            var enabled = (settings.enabled || '').trim().split(' ');
+            var pumpEnabled = false;
+            for (var e = 0; e < enabled.length; e++) {
+                var val = enabled[e].trim();
+                val && $('.value-enable[data-value="' + val + '"]').prop('checked', true);
+                if (val === 'pump') {
+                    pumpEnabled = true;
+                }
+            }
+
+            if (pumpEnabled) {
+                $('.pump').show();
+            } else {
+                $('.pump').hide();
+            }
+
+            var pump = (settings.pumpFields || '').trim().split(' ');
+            for (var p = 0; p < pump.length; p++) {
+                var pVal = pump[p].trim();
+                pVal && $('.value-pump[data-value="' + pVal + '"]').prop('checked', true);
+            }
 
             $('.value').each(function () {
                 var $key = $(this);
@@ -74,6 +125,32 @@
             fillSelectCertificates('#certPrivate', 'private', settings.certPrivate);
             fillSelectCertificates('#certChained', 'chained', settings.certChained);
 
+            envs = settings.envs || [];
+            values2table('envs', envs, onChange);
+
+            var $dialogLicense = $('#dialog-license-main');
+            $dialogLicense.find('.license_diag').on('change', function () {
+                if ($(this).prop('checked')) {
+                    $dialogLicense.find('.license_agree').removeClass('disabled');
+                } else {
+                    $dialogLicense.find('.license_agree').addClass('disabled');
+                }
+            });
+
+            if (!settings.licenseAccepted) {
+                $dialogLicense.find('.license_agree').addClass('disabled');
+                $dialogLicense.modal({
+                    dismissible: false,
+                    complete: function () {
+                    }
+                }).modal('open');
+                $dialogLicense.find('.license_disagree').on('click', function () {
+                    $('.btn-cancel').trigger('click');
+                });
+                $dialogLicense.find('.license_agree').on('click', function () {
+                    onChange();
+                });
+            }
 
             // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
             M && M.updateTextFields();
@@ -95,6 +172,21 @@
                 return;
             }
 
+            obj.enabled = [];
+            $('.value-enable').each(function () {
+                $(this).prop('checked') && obj.enabled.push($(this).data('value'));
+            });
+            obj.enabled = obj.enabled.join(' ');
+
+            obj.pumpFields = [];
+            $('.value-pump').each(function () {
+                $(this).prop('checked') && obj.pumpFields.push($(this).data('value'));
+            });
+            obj.pumpFields = obj.pumpFields.join(' ');
+
+            obj.envs = table2values('envs');
+            obj.licenseAccepted = true;
+
             callback(obj);
         }
     </script>
@@ -107,8 +199,10 @@
     <div class="row">
         <div class="col s12">
             <ul class="tabs">
-                <li class="tab col s5 m4"><a href="#tab-server" class="translate active">Server settings</a></li>
-                <li class="tab col s5 m4"><a href="#tab-main" class="translate">Main settings</a></li>
+                <li class="tab col s3"><a href="#tab-server" class="translate active">Server settings</a></li>
+                <li class="tab col s3"><a href="#tab-main" class="translate">Main settings</a></li>
+                <li class="tab col s3"><a href="#tab-components" class="translate">Components</a></li>
+                <li class="tab col s3"><a href="#tab-envs" class="translate">Custom settings</a></li>
             </ul>
         </div>
         <div id="tab-server" class="col s12 page">
@@ -130,11 +224,11 @@
             <div class="row" style="padding-bottom: 20px">
                 <div class="col s12 m4">
                     <input class="value" id="secure" type="checkbox" />
-                    <label class="translate" for="secure">Secure(HTTPS)</label>
+                    <span class="translate" for="secure">Secure(HTTPS)</span>
                 </div>
                 <div class="col s12 m4 col-leEnabled">
                     <input class="value" id="leEnabled" type="checkbox" data-link="lets-encrypt-certificates"/>
-                    <label for="leEnabled" class="translate">Use Lets Encrypt certificates</label>
+                    <span for="leEnabled" class="translate">Use Lets Encrypt certificates</span>
                 </div>
             </div>
             <div class="row">
@@ -165,6 +259,10 @@
                     <label for="secret" class="translate">API Secret</label>
                     <span class="translate">minimum 12 characters</span>
                 </div>
+                <div class="col s12 m4">
+                    <input class="value" id="allowUnauthorized" type="checkbox"/>
+                    <span for="allowUnauthorized" class="translate">Allow unauthorized users</span>
+                </div>
             </div>
             <div class="row">
                 <div class="input-field  col s12 m4 l3">
@@ -192,9 +290,202 @@
                 </div>
             </div>
         </div>
+        <div id="tab-components" class="col s12 page">
+            <div class="row">
+                <h4>Components</h4>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="careportal"/>
+                    <span class="translate">Careportal</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="rawbg"/>
+                    <span class="translate">Raw BG</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="iob"/>
+                    <span class="translate">Insulin-on-Board</span>
+                </div>
+
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="delta"/>
+                    <span class="translate">BG Delta</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="direction"/>
+                    <span class="translate">BG Direction</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="upbat"/>
+                    <span class="translate">Uploader Battery</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="timeago"/>
+                    <span class="translate">Time Ago</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="devicestatus"/>
+                    <span class="translate">Device Status</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="errorcodes"/>
+                    <span class="translate">CGM Error Codes</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="ar2"/>
+                    <span class="translate">AR2 Forecasting</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="simplealarms"/>
+                    <span class="translate">Simple BG Alarms</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="profile"/>
+                    <span class="translate">Treatment Profile</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="boluscalc"/>
+                    <span class="translate">Bolus Wizard</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="food"/>
+                    <span class="translate">Custom Foods</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="cob"/>
+                    <span class="translate">Carbs-on-Board</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="bwp"/>
+                    <span class="translate">Bolus Wizard Preview</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="cage"/>
+                    <span class="translate">Cannula Age</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="sage"/>
+                    <span class="translate">Sensor Age</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="iage"/>
+                    <span class="translate">Insulin Age</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="bage"/>
+                    <span class="translate">Battery Age</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="treatmentnotify"/>
+                    <span class="translate">Treatment Notifications</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="basal"/>
+                    <span class="translate">Basal Profile</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="bridge"/>
+                    <span class="translate">Share2Nightscout bridge</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="mmconnect"/>
+                    <span class="translate">MiniMed Connect bridge</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="pump"/>
+                    <span class="translate">Pump Monitoring</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="openaps"/>
+                    <span class="translate">OpenAPS</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="loop"/>
+                    <span class="translate">Loop</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="override"/>
+                    <span class="translate">Override Mode</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="xdrip-js"/>
+                    <span class="translate">xDrip-js</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-enable" type="checkbox" data-value="cors"/>
+                    <span class="translate">CORS</span>
+                </div>
+            </div>
+            <div class="row pump">
+                <h4>Pump settings</h4>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-pump" type="checkbox" data-value="reservoir"/>
+                    <span class="translate">Reservoir</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-pump" type="checkbox" data-value="battery"/>
+                    <span class="translate">Battery</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-pump" type="checkbox" data-value="clock"/>
+                    <span class="translate">Clock</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-pump" type="checkbox" data-value="status"/>
+                    <span class="translate">Status</span>
+                </div>
+                <div class="input-field  col s6 m4 l2">
+                    <input class="value-pump" type="checkbox" data-value="device"/>
+                    <span class="translate">Device</span>
+                </div>
+            </div>
+        </div>
+        <div id="tab-envs" class="col s12 page">
+            <div><span class="translate">The possible environment variables could be found here:</span><a href="https://github.com/nightscout/cgm-remote-monitor#environment" target="_blank">link</a></div>
+            <div class="col s12" id="envs">
+                <a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
+                <div class="table-values-div">
+                    <table class="table-values">
+                        <thead>
+                        <tr>
+                            <th data-name="name"      class="translate">name</th>
+                            <th data-name="value"      class="translate">value</th>
+                            <th data-buttons="delete up down"></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-license-main" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div class="col s12 m6 l3">
+                <h5 class="translate">Disclaimer</h5>
+            </div>
+            <div class="modal-sub-content">
+                <div class="row license-text">
+                    <div class="col s12">
+                        <div class="translate license_text" style="color: red">license_text_1</div>
+                        <div class="translate license_text">license_text_2</div>
+                        <div class="translate license_text">license_text_3</div>
+                        <div class="translate license_text">license_text_4</div>
+                        <div class="translate license_text">license_text_5</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 l9 license-checkbox-box">
+                        <input class="license_diag filled-in" type="checkbox"/>
+                        <span class="translate license_checkbox" for="license_diag">Have read and understood</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="license_agree modal-action modal-close waves-effect waves-green btn"><span class="translate">agree</span></a>
+            <a class="license_disagree modal-action modal-close waves-effect waves-green btn"><span class="translate">close</span></a>
+        </div>
     </div>
 </div>
-
 </body>
 
 </html>

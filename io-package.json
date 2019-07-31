@@ -20,7 +20,7 @@
         "titleLang": {
             "en": "Nightscout server",
             "de": "Nachtscout-Server",
-            "ru": "Ночной сервер",
+            "ru": "Nachtscout сервер",
             "pt": "Servidor Nightscout",
             "nl": "Nightscout-server",
             "fr": "Serveur Nightscout",
@@ -32,7 +32,7 @@
         "desc": {
             "en": "Provides nightscout server for sugar monitoring",
             "de": "Bietet einen Nachtsuchserver für die Zuckerüberwachung",
-            "ru": "Предоставляет сервер nightcout для мониторинга сахара",
+            "ru": "Предоставляет сервер nightscout для мониторинга сахара в крови",
             "pt": "Fornece servidor nightscout para monitoramento de açúcar",
             "nl": "Biedt nachtcoutserver voor suikercontrole",
             "fr": "Fournit un serveur nightscout pour la surveillance du sucre",
@@ -68,19 +68,260 @@
         "secure": false,
         "port": 1337,
         "bind": "127.0.0.1",
+
         "mongo": "mongodb://localhost:27017/iobroker",
         "enabled": "careportal basal",
         "units": "mg/dl",
         "secret": "12345678901234",
         "timeFormat": 24,
         "language": "",
-
+        "allowUnauthorized": false,
+        "pumpFields": "reservoir battery",
+        "envs": [{"name": "ENV_VARIABLE_EXAMPLE", "value": "value"}],
         "certPublic": "",
         "certPrivate": "",
         "certChained": "",
+        "licenseAccepted": false,
 
         "leEnabled": false
     },
     "objects": [],
-    "instanceObjects": []
+    "instanceObjects": [
+        {
+            "_id": "data",
+            "type": "channel",
+            "common": {
+                "name": "data"
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.device",
+            "type": "state",
+            "common": {
+                "name": "Device description",
+                "role": "state",
+                "type": "string",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.pumpBattery",
+            "type": "state",
+            "common": {
+                "name": "Pump battery",
+                "role": "value.battery",
+                "unit": "%",
+                "min": 0,
+                "max": 100,
+                "type": "number",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.clock",
+            "type": "state",
+            "common": {
+                "name": "Pump time",
+                "role": "value.time",
+                "type": "date",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.bolusiob",
+            "type": "state",
+            "common": {
+                "name": "Bolus IOB",
+                "role": "value",
+                "type": "number",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.reservoir",
+            "type": "state",
+            "common": {
+                "name": "Reservoir level",
+                "role": "value.fill",
+                "type": "number",
+                "unit": "%",
+                "min": 0,
+                "max": 100,
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.bolusing",
+            "type": "state",
+            "common": {
+                "name": "Bolusing",
+                "role": "indicator",
+                "type": "boolean",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.status",
+            "type": "state",
+            "common": {
+                "name": "Status",
+                "role": "state",
+                "type": "string",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.suspended",
+            "type": "state",
+            "common": {
+                "name": "Suspended",
+                "role": "indicator",
+                "type": "boolean",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.uploaderBattery",
+            "type": "state",
+            "common": {
+                "name": "Uploader battery",
+                "role": "value.battery",
+                "unit": "%",
+                "min": 0,
+                "max": 100,
+                "type": "number",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.mgdl",
+            "type": "state",
+            "common": {
+                "name": "Sugar value",
+                "role": "value.blood.sugar",
+                "type": "number",
+                "unit": "mgdl",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.mgdlScaled",
+            "type": "state",
+            "common": {
+                "name": "mgdl Scaled",
+                "role": "value",
+                "type": "number",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.mgdlDirection",
+            "type": "state",
+            "common": {
+                "name": "mgdl Direction",
+                "role": "state",
+                "type": "string",
+                "states": {
+                    "NONE": "⇼",
+                    "TripleUp": "⤊",
+                    "DoubleUp": "⇈",
+                    "SingleUp": "↑",
+                    "FortyFiveUp": "↗",
+                    "Flat": "→",
+                    "FortyFiveDown": "↘",
+                    "SingleDown": "↓",
+                    "DoubleDown": "⇊",
+                    "TripleDown": "⤋",
+                    "NOT COMPUTABLE": "-",
+                    "RATE OUT OF RANGE": "⇕"
+                },
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.lastUpdate",
+            "type": "state",
+            "common": {
+                "name": "Last update",
+                "role": "state",
+                "type": "date",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.rawUpdate",
+            "type": "state",
+            "common": {
+                "name": "Raw JSON",
+                "role": "state",
+                "type": "json",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.notification",
+            "type": "state",
+            "common": {
+                "name": "Notification",
+                "role": "state",
+                "type": "string",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.urgentAlarm",
+            "type": "state",
+            "common": {
+                "name": "Urgent alarm",
+                "role": "indicator.alarm.health",
+                "type": "boolean",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.alarm",
+            "type": "state",
+            "common": {
+                "name": "Alarm",
+                "role": "indicator.alarm.health",
+                "type": "boolean",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        }
+    ]
 }

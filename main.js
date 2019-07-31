@@ -9,6 +9,7 @@ const adapterName = (require('./package.json').name.split('.').pop() || '').toSt
 const Nightscout = require('./lib/nightscout');
 const request = require('request');
 const crypto = require('crypto');
+const NightscoutClient = require('./lib/client');
 
 /**
  * The adapter instance
@@ -17,6 +18,7 @@ const crypto = require('crypto');
 let adapter;
 let URL;
 let secret;
+let client;
 
 /**
  * Starts the adapter instance
@@ -34,6 +36,9 @@ function startAdapter(options) {
         // is called when adapter shuts down - callback has to be called under any circumstances!
         unload: callback => {
             try {
+                client && client.close();
+                client = null;
+
                 Nightscout.stopServer(callback);
             } catch (e) {
                 callback();
@@ -82,6 +87,19 @@ function startAdapter(options) {
     }));
 }
 
+function start() {
+    if (!adapter.config.language) {
+        adapter.getForeignObject('system.config', (err, obj) => {
+            adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
+            Nightscout.startServer(adapter).then(() =>
+                setTimeout(() => client = new NightscoutClient(adapter, URL, secret), 1000));
+        });
+    } else {
+        Nightscout.startServer(adapter).then(() =>
+            setTimeout(() => client = new NightscoutClient(adapter, URL, secret), 1000));
+    }
+}
+
 function main() {
     const shasum = crypto.createHash('sha1');
     shasum.update(adapter.config.secret);
@@ -89,13 +107,20 @@ function main() {
 
     URL = `http${adapter.config.secure ? 's' : ''}://${adapter.config.bind}:${adapter.config.port}`;
 
-    if (!adapter.config.language) {
-        adapter.getForeignObject('system.config', (err, obj) => {
-            adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
-            Nightscout.startServer(adapter.config);
+    if (!adapter.config.licenseAccepted) {
+        adapter.log.warn('Please go to configuration page and read disclaimer');
+        return;
+    }
+
+    if (adapter.config.secure) {
+        // Load certificates
+        adapter.getCertificates((err, certificates, leConfig) => {
+            adapter.config.certificates = certificates;
+            adapter.config.leConfig     = leConfig;
+            start();
         });
     } else {
-        Nightscout.startServer(adapter.config);
+        start();
     }
 }
 

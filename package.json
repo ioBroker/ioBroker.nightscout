@@ -23,7 +23,8 @@
   "dependencies": {
     "@iobroker/adapter-core": "^1.0.3",
     "nightscout": "0.12.2-2",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "socket.io-client": "~2.1.1"
   },
   "devDependencies": {
     "@iobroker/testing": "^1.2.5",

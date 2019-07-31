@@ -10,8 +10,43 @@
 
 **Tests:**: [![Travis-CI](http://img.shields.io/travis/ioBroker/ioBroker.nightscout/master.svg)](https://travis-ci.org/ioBroker/ioBroker.nightscout)
 
+## Disclaimer
+(translation from [here](https://github.com/nightscout/user_guide/blob/master/de/grundlagen/diydisclaimer.md))
+
+!> Never use the information from Nightscout, ioBroker or program code to make medical decisions.
+
+!> This is a project that is created and supported exclusively by volunteers.
+   There is no warranty or guaranteed support of any kind in this project.
+   If you decide to use it, the quality and performance of this project depends on you.
+
+!> All information and thoughts of the program codes described here are for informational and educational purposes only.
+   The use of program codes of the homepage www.github.com is without any guarantee or support of any kind.
+   Any element of this system can fail at any time, making the system unusable!
+   There is no password protected privacy or any security of the tools provided here.
+   Any data that you upload will be readable by anyone on the Internet when you share or submit the specific URL (Internet address).
+   This is not a project of the Dexcom company. Nightscout has no affiliation with Dexcom or other companies,
+   services or products mentioned on this website.
+   All product and company names mentioned herein are trademarks of their respective owners or manufacturers.
+
+!> The translators / authors accept no responsibility for the topicality, correctness and completeness of the information provided in this documentation
+   and those of the listed links. Liability claims against the translators / authors,
+   which relate in particular to physical, material or immaterial damages caused by the
+   use or non-use of the information provided or by the use of incorrect and incomplete information,
+   are excluded in principle, provided that the translator / The authors are not proven to be intentionally or grossly negligent.
+   All offers are non-binding. The translators / authors expressly reserve the right to change,
+   supplement or delete parts of the pages or the entire offer without prior notice, or to discontinue publication temporarily or permanently.
+
+!> Do-It-Yourself.
+   DIY project means in our case, that there is no company from which one can buy a finished, functioning system.
+   Elements of the system are developed and put together by participants of the project.
+   They will be provided to you free of charge.
+   DIY means to you that you have to do your part to make the system work for you.
+   We hope that DIY will inspire you as much as we do - so at some point you can make a small contribution to making the system better for everyone.
+
 ## Description
 This adapter starts the nightscout server from this repository: https://github.com/nightscout/cgm-remote-monitor
+
+For the detailed information read Nightscout documentation [here](https://nightscout-user-guide.readthedocs.io/).
 
 See [requirements](#requirements).
 
@@ -21,11 +56,10 @@ In case you are using local mongoDB the connection string looks like `mongodb://
 ### Installed and running mongo DB.
 It could be cloud DB or local DB, that could be installed from here: https://www.mongodb.com/download-center/community.
 
-### ioBroker.iot
-If you want to write the sugar monitoring values on the way, you need the running and configured iot adapter.
+Under Debian the MongoDB could be installed as: `apt-get install mongodb` or `sudo apt-get install mongodb` if the user is not `root`.
 
-## Debug
-MONGO_CONNECTION=mongodb://localhost:27017/iobroker;ENABLE=careportal basal;DISPLAY_UNITS=mg/dl;API_SECRET=12345678901234;INSECURE_USE_HTTP=true;SECURE_HSTS_HEADER=false;TIME_FORMAT=24
+### ioBroker.iot
+If you want to write the sugar monitoring values on the way, you need the running and configured IoT adapter.
 
 ## Changelog
 

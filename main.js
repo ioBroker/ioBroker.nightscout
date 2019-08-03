@@ -50,8 +50,8 @@ function startAdapter(options) {
         // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
         // requires "common.message" property to be set to true in io-package.json
         message: obj => {
-        	if (typeof obj === 'object' && obj.message) {
-         		// expected
+            if (typeof obj === 'object' && obj.message) {
+                // expected
                 // {
                 //       path: '/api/v1/status.json',
                 //       method: 'GET',
@@ -81,9 +81,12 @@ function startAdapter(options) {
                     'api-secret': secret
                 };
 
-                request(query, (err, state, body) =>
-                    obj.callback && adapter.sendTo(obj.from, obj.command, body, obj.callback));
-         	}
+                adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
+                request(query, (err, state, body) => {
+                    adapter.log.debug('Response to IoT: ' + body);
+                    obj.callback && adapter.sendTo(obj.from, obj.command, body, obj.callback);
+                });
+            }
         },
     }));
 }

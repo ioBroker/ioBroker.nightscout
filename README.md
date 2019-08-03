@@ -61,9 +61,12 @@ Under Debian the MongoDB could be installed as: `apt-get install mongodb` or `su
 ### ioBroker.iot
 If you want to write the sugar monitoring values on the way, you need the running and configured IoT adapter.
 
+You can write the values into https://nightscout.iobroker.in and the **secret as your login on iobroker.pro**.
+
+
 ## Changelog
 
-### 0.0.1
+### 0.1.0
 * (bluefox) initial release
 
 ## License

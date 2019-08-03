@@ -35,6 +35,7 @@ function startAdapter(options) {
 
         // is called when adapter shuts down - callback has to be called under any circumstances!
         unload: callback => {
+            adapter && adapter.setState && adapter.setState('info.connection', false, true);
             try {
                 client && client.close();
                 client = null;
@@ -92,15 +93,22 @@ function start() {
         adapter.getForeignObject('system.config', (err, obj) => {
             adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
             Nightscout.startServer(adapter).then(() =>
-                setTimeout(() => client = new NightscoutClient(adapter, URL, secret), 1000));
+                setTimeout(() => {
+                    client = new NightscoutClient(adapter, URL, secret);
+                    client.on('connection', connected => adapter.setState('info.connection', connected, true));
+                }, 1000));
         });
     } else {
         Nightscout.startServer(adapter).then(() =>
-            setTimeout(() => client = new NightscoutClient(adapter, URL, secret), 1000));
+            setTimeout(() => {
+                client = new NightscoutClient(adapter, URL, secret);
+                client.on('connection', connected => adapter.setState('info.connection', connected, true));
+            }, 1000));
     }
 }
 
 function main() {
+    adapter.setState('info.connection', false, true);
     const shasum = crypto.createHash('sha1');
     shasum.update(adapter.config.secret);
     secret = adapter.config.secret ? shasum.digest('hex') : '';

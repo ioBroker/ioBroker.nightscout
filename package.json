@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nightscout",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Provides nightscout server for sugar monitoring",
   "author": {
     "name": "bluefox",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/ioBroker/ioBroker.nightscout",
   "license": "AGPL-3.0",
   "engines": {
-    "node": "^10.16.0 || ^8.15.1"
+    "node": "^10.15.2 || ^8.15.1"
   },
   "keywords": [
     "sugar monitoring",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^1.0.3",
-    "nightscout": "0.12.2-2",
+    "nightscout": "0.12.3-1",
     "request": "^2.88.0",
     "socket.io-client": "~2.1.1"
   },

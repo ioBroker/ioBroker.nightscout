@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.0.1",
+        "version": "0.1.0",
         "news": {
-            "0.0.1": {
+            "0.1.0": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
                 "ru": "Начальная версия",
@@ -61,7 +61,7 @@
         "mode": "daemon",
         "type": "utility",
         "compact": true,
-        "localLink": "%web_protocol%://%ip%:%web_port%/",
+        "localLink": "%protocol%://%ip%:%port%/",
         "materialize": true
     },
     "native": {
@@ -87,6 +87,27 @@
     },
     "objects": [],
     "instanceObjects": [
+        {
+            "_id":  "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "info.connection",
+            "type": "state",
+            "common": {
+                "role":  "indicator.connected",
+                "name":  "If connected to LaMetric",
+                "type":  "boolean",
+                "read":  true,
+                "write": false,
+                "def":   false
+            },
+            "native": {}
+        },
         {
             "_id": "data",
             "type": "channel",

@@ -63,6 +63,57 @@ If you want to write the sugar monitoring values on the way, you need the runnin
 
 You can write the values into https://nightscout.iobroker.in and the **secret as your login on iobroker.pro**.
 
+## Use cases
+### Monitor value and report via telegram
+Create a script in javascript adapter:
+```
+function report(alarm, val) {    
+    sendTo('telegram.0', {
+        text:                   `Blood glucose ${alarm ? 'alarm' : 'OK'}: ${val}mg/ml`,
+        caption:                'Nightscout'
+    });
+    getObject('system.adapter.phantomjs.0', (err, obj) => {
+        if (!obj || !obj.common || !obj.common.enabled) return; 
+        setState('nightscout.0.trigger.picture', true);
+        setTimeout(() => {
+            getBinaryState('phantomjs.0.pictures.nighscout_png', (err, data) => {
+                sendTo('telegram.0', {
+                    text: data,
+                    type: 'photo'
+                });
+            });       
+        }, 10000);
+    });      
+}
+
+let alarm = false;
+on('nightscout.0.data.mgdl', obj => {
+    if (obj.state.val > 170 || obj.state.val < 75) {
+        if (!alarm) {
+            alarm = true;
+            report(alarm, obj.state.val);
+        }   
+    } else if (alarm) {
+        alarm = false;
+        report(alarm, obj.state.val);
+    }    
+});
+```
+**Notice: to get the chart as an image the phantomjs adapter must be installed and running**
+
+### Create a chart picture
+** This required installed phantomjs adapter **
+```
+setState('nightscout.0.trigger.picture', true);
+on([id: 'nightscout.0.trigger.picture', change: 'any'}, obj => {
+    if (obj.state.val && obj.state.ack) {
+        console.log('You can check the picture under http://ip:8082/state/phantomjs.0.pictures.nightscout_png');
+    } else if (!obj.state.val && obj.state.ack) {
+        console.error('Cannot create picture');
+    }
+});
+```
+
 
 ## Changelog
 

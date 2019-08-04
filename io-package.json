@@ -100,7 +100,28 @@
             "type": "state",
             "common": {
                 "role":  "indicator.connected",
-                "name":  "If connected to LaMetric",
+                "name":  "If connected to nightscout server",
+                "type":  "boolean",
+                "read":  true,
+                "write": false,
+                "def":   false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "trigger",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "trigger.picture",
+            "type": "state",
+            "common": {
+                "role":  "button",
+                "name":  "Create picture with phantomJS",
                 "type":  "boolean",
                 "read":  true,
                 "write": false,

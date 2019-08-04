@@ -20,6 +20,62 @@ let URL;
 let secret;
 let client;
 
+function readRoles() {
+    return new Promise(resolve => {
+        const query = {
+            url: URL + '/api/v2/authorization/subjects',
+            method: 'GET',
+            headers: {'api-secret': secret}
+        };
+        request(query, (error, status, body) => {
+            if (body) {
+                try {
+                    body = JSON.parse(body);
+                } catch (e) {
+                    body = null;
+                }
+
+            }
+            if (body) {
+                const item = body.find(item => item.name === 'phantomjs');
+                if (item) {
+                    return resolve(item.accessToken);
+                }
+            }
+            resolve();
+        });
+    });
+}
+
+function checkRole() {
+    return readRoles()
+        .then(accessToken => {
+            if (accessToken) {
+                return accessToken;
+            } else {
+                return new Promise((resolve, reject) => {
+                    const query = {
+                        url: URL + '/api/v2/authorization/subjects',
+                        method: 'POST',
+                        body: 'name=phantomjs&roles%5B%5D=readable&notes=',
+                        headers: {
+                            'api-secret': secret,
+                            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        }
+                    };                    // add phantomjs
+                    request(query, (error, status, body) => {
+                        if (body) {
+                            readRoles().then(accessToken =>
+                                accessToken ? resolve(accessToken) : reject('Cannot get accessToken'));
+                        } else {
+                            reject(error || status.statusCode);
+                        }
+                    });
+                });
+            }
+        });
+}
+
 /**
  * Starts the adapter instance
  * @param {Partial<ioBroker.AdapterOptions>} [options]
@@ -43,6 +99,57 @@ function startAdapter(options) {
                 Nightscout.stopServer(callback);
             } catch (e) {
                 callback();
+            }
+        },
+
+        stateChange(id, state) {
+            if (id.endsWith('trigger.picture') && state && state.ack === false && state.val) {
+                adapter.getForeignObject('system.adapter.phantomjs.0', (err, obj) => {
+                    if (!obj || !obj.common || !obj.common.enabled) {
+                        adapter.log.error('PhantomJS is not installed or not enabled');
+                    } else {
+                        // check if phantomjs role exists
+                        checkRole()
+                            .then(token => {
+                                adapter.sendTo('phantomjs.0', 'send', {
+                                    url:                    URL + '/?token=' + token,
+                                    output:                 'nightscout.png',  // default value
+                                    width:                  800,            // default value
+                                    height:                 600,            // default value
+                                    timeout:                5000,           // default value
+                                    zoom:                   1,              // default value
+
+                                    'clip-top':             0,              // default value
+                                    'clip-left':            0,              // default value
+                                    'clip-width':           800,            // default value is equal to width
+                                    'clip-height':          600,            // default value is equal to height
+                                    'scroll-top':           0,              // default value
+                                    'scroll-left':          0,              // default value
+
+                                    online:                 true            // default value
+                                }, result => {
+                                    if (result.error) {
+                                        adapter.log.error('Cannot render website: ' + JSON.stringify(result.error));
+                                        adapter.setState('trigger.picture', false, true);
+                                    } else {
+                                        adapter.setState('trigger.picture', true, true);
+                                    }
+                                    if (result.stderr) {
+                                        adapter.log.error('Cannot render website: ' + result.stderr);
+                                    }
+                                    if (result.stdout) {
+                                        adapter.log.log('Nightscout rendered: ' + result.stdout);
+                                    }
+                                    adapter.log.debug('Nightscout rendered: ' + result.output);
+                                    adapter.log.debug('Picture can be find under phantomjs.0.pictures.nightscout_png');
+                                });
+                            })
+                            .catch(e => {
+                                adapter.setState('trigger.picture', false, true);
+                                adapter.log.error('Cannot enable phantomjs: ' + e);
+                            });
+                    }
+                });
             }
         },
 
@@ -117,6 +224,8 @@ function main() {
     secret = adapter.config.secret ? shasum.digest('hex') : '';
 
     URL = `http${adapter.config.secure ? 's' : ''}://${adapter.config.bind}:${adapter.config.port}`;
+
+    adapter.subscribeStates('trigger.picture');
 
     if (!adapter.config.licenseAccepted) {
         adapter.log.warn('Please go to configuration page and read disclaimer');

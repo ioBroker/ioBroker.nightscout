@@ -138,7 +138,7 @@ function startAdapter(options) {
                                         adapter.log.error('Cannot render website: ' + result.stderr);
                                     }
                                     if (result.stdout) {
-                                        adapter.log.log('Nightscout rendered: ' + result.stdout);
+                                        adapter.log.debug('Nightscout rendered: ' + result.stdout);
                                     }
                                     adapter.log.debug('Nightscout rendered: ' + result.output);
                                     adapter.log.debug('Picture can be find under phantomjs.0.pictures.nightscout_png');
@@ -152,7 +152,6 @@ function startAdapter(options) {
                 });
             }
         },
-
 
         // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
         // requires "common.message" property to be set to true in io-package.json
@@ -195,6 +194,8 @@ function startAdapter(options) {
                         query.body = obj.message.body;
                     }
                 }
+
+                query.url = query.url.replace(/secret=[^&]*/, 'secret=' + secret);
 
                 adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
                 request(query, (err, state, body) => {

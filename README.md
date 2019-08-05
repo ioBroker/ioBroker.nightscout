@@ -71,19 +71,7 @@ function report(alarm, val) {
     sendTo('telegram.0', {
         text:                   `Blood glucose ${alarm ? 'alarm' : 'OK'}: ${val}mg/ml`,
         caption:                'Nightscout'
-    });
-    getObject('system.adapter.phantomjs.0', (err, obj) => {
-        if (!obj || !obj.common || !obj.common.enabled) return; 
-        setState('nightscout.0.trigger.picture', true);
-        setTimeout(() => {
-            getBinaryState('phantomjs.0.pictures.nighscout_png', (err, data) => {
-                sendTo('telegram.0', {
-                    text: data,
-                    type: 'photo'
-                });
-            });       
-        }, 10000);
-    });      
+    });  
 }
 
 let alarm = false;
@@ -101,23 +89,11 @@ on('nightscout.0.data.mgdl', obj => {
 ```
 **Notice: to get the chart as an image the phantomjs adapter must be installed and running**
 
-### Create a chart picture
-** This required installed phantomjs adapter **
-```
-setState('nightscout.0.trigger.picture', true);
-on([id: 'nightscout.0.trigger.picture', change: 'any'}, obj => {
-    if (obj.state.val && obj.state.ack) {
-        console.log('You can check the picture under http://ip:8082/state/phantomjs.0.pictures.nightscout_png');
-    } else if (!obj.state.val && obj.state.ack) {
-        console.error('Cannot create picture');
-    }
-});
-```
 
 
 ## Changelog
 
-### 0.1.0
+### 0.9.0 (2019-08-05)
 * (bluefox) initial release
 
 ## License

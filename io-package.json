@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.1.0",
+        "version": "0.9.0",
         "news": {
-            "0.1.0": {
+            "0.9.0": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
                 "ru": "Начальная версия",
@@ -69,7 +69,7 @@
         "port": 1337,
         "bind": "127.0.0.1",
 
-        "mongo": "mongodb://localhost:27017/iobroker",
+        "mongo": "mongodb://localhost:27017/nightscout",
         "enabled": "careportal basal",
         "units": "mg/dl",
         "secret": "12345678901234",

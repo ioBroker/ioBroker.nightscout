@@ -176,17 +176,25 @@ function startAdapter(options) {
                     url: URL + obj.message.path,
                     method: (obj.message.method || 'GET').toUpperCase()
                 };
-                if (query.method !== 'GET') {
-                    if (typeof obj.message.body === 'object') {
-                        query.json = obj.message.body;
-                    } else {
-                        query.body = obj.message.body;
+                if (obj.message.body && typeof obj.message.body === 'string' && (obj.message.body[0] === '[' || obj.message.body[0] === '{')) {
+                    try {
+                        obj.message.body = JSON.parse(obj.message.body);
+                    } catch (e) {
                     }
                 }
 
                 query.headers = {
                     'api-secret': secret
                 };
+
+                if (query.method !== 'GET') {
+                    if (typeof obj.message.body === 'object') {
+                        query.json = obj.message.body;
+                        query.headers['content-type'] = 'application/json';
+                    } else {
+                        query.body = obj.message.body;
+                    }
+                }
 
                 adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
                 request(query, (err, state, body) => {

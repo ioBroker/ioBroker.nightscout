@@ -182,6 +182,8 @@ function startAdapter(options) {
                     }
                 }
 
+                const id = obj.message.id;
+
                 query.headers = {
                     'api-secret': secret
                 };
@@ -200,7 +202,7 @@ function startAdapter(options) {
                 adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
                 request(query, (err, state, body) => {
                     adapter.log.debug('Response to IoT: ' + body);
-                    obj.callback && adapter.sendTo(obj.from, obj.command, body, obj.callback);
+                    obj.callback && adapter.sendTo(obj.from, obj.command, id ? {id, body} : body, obj.callback);
                 });
             }
         },

@@ -93,7 +93,7 @@ on('nightscout.0.data.mgdl', obj => {
 
 ## Changelog
 
-### 0.9.2 (2019-08-06)
+### 0.9.3 (2019-08-06)
 * (bluefox) initial release
 
 ## License

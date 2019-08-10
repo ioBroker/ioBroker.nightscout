@@ -185,7 +185,8 @@ function startAdapter(options) {
                 const id = obj.message.id;
 
                 query.headers = {
-                    'api-secret': secret
+                    'api-secret': secret,
+                    'accept': '*/*'
                 };
 
                 if (query.method !== 'GET') {
@@ -201,8 +202,8 @@ function startAdapter(options) {
 
                 adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
                 request(query, (err, state, body) => {
-                    adapter.log.debug('Response to IoT: ' + body);
-                    obj.callback && adapter.sendTo(obj.from, obj.command, id ? {id, body} : body, obj.callback);
+                    adapter.log.debug('Response to IoT: ' + JSON.stringify(body));
+                    obj.callback && adapter.sendTo(obj.from, obj.command, id ? {id, body, 'content-type': state && state.headers && state.headers['content-type']} : body, obj.callback);
                 });
             }
         },

@@ -92,6 +92,8 @@ on('nightscout.0.data.mgdl', obj => {
 
 
 ## Changelog
+### 0.9.5 (2019-08-23)
+* (bluefox) used newer version of nightscout 
 
 ### 0.9.4 (2019-08-10)
 * (bluefox) initial release

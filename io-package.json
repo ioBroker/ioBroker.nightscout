@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.9.4",
+        "version": "0.9.5",
         "news": {
+            "0.9.5": {
+                "en": "Used newer version of nightscout",
+                "de": "Benutzte neuere Version von nightscout",
+                "ru": "Используется более новая версия nightcout",
+                "pt": "Usado versão mais recente do nightscout",
+                "nl": "Nieuwere versie van nightscout gebruikt",
+                "fr": "Utilisé la nouvelle version de nightscout",
+                "it": "Usato versione più recente di nightscout",
+                "es": "Nueva versión usada de nightscout",
+                "pl": "Użyto nowszej wersji nightscout",
+                "zh-cn": "使用较新版本的nightscout"
+            },
             "0.9.4": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",

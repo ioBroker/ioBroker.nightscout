@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.9.5",
+        "version": "0.9.6",
         "news": {
-            "0.9.5": {
+            "0.9.6": {
                 "en": "Used newer version of nightscout",
                 "de": "Benutzte neuere Version von nightscout",
                 "ru": "Используется более новая версия nightcout",

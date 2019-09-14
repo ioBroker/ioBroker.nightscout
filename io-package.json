@@ -31,8 +31,8 @@
         "title": "Nightscout server",
         "titleLang": {
             "en": "Nightscout server",
-            "de": "Nachtscout-Server",
-            "ru": "Nachtscout сервер",
+            "de": "Nightscout-Server",
+            "ru": "Nightscout сервер",
             "pt": "Servidor Nightscout",
             "nl": "Nightscout-server",
             "fr": "Serveur Nightscout",
@@ -43,7 +43,7 @@
         },
         "desc": {
             "en": "Provides nightscout server for sugar monitoring",
-            "de": "Bietet einen Nachtsuchserver für die Zuckerüberwachung",
+            "de": "Bietet einen Nightscout-server für die Zuckerüberwachung",
             "ru": "Предоставляет сервер nightscout для мониторинга сахара в крови",
             "pt": "Fornece servidor nightscout para monitoramento de açúcar",
             "nl": "Biedt nachtcoutserver voor suikercontrole",

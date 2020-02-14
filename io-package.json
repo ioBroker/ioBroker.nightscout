@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.9.6",
+        "version": "0.9.7",
         "news": {
+            "0.9.7": {
+              "en": "Fixed last Updated value",
+              "de": "Letzter aktualisierter Wert behoben",
+              "ru": "Фиксированное последнее обновленное значение",
+              "pt": "Último valor atualizado fixo",
+              "nl": "Vaste laatst bijgewerkte waarde",
+              "fr": "Correction de la dernière valeur mise à jour",
+              "it": "Risolto l'ultimo valore aggiornato",
+              "es": "Se corrigió el último valor actualizado",
+              "pl": "Naprawiono ostatnią zaktualizowaną wartość",
+              "zh-cn": "固定最近更新的值"
+            },
             "0.9.6": {
                 "en": "Used newer version of nightscout",
                 "de": "Benutzte neuere Version von nightscout",

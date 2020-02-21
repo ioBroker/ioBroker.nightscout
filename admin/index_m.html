@@ -36,23 +36,31 @@
         var envs;
 
         function showHideSettings() {
-            if ($('#secure').prop('checked')) {
-                $('.col-leEnabled').show();
+            if ($('#local').prop('checked')) {
+                $('.server').show();
+                $('.clientOnly').hide();
 
-                if ($('#leEnabled').prop('checked')) {
+                if ($('#secure').prop('checked')) {
+                    $('.col-leEnabled').show();
+
+                    if ($('#leEnabled').prop('checked')) {
+                        $('.col-certPublic').hide();
+                        $('.col-certPrivate').hide();
+                        $('.col-certChained').hide();
+                    } else {
+                        $('.col-certPublic').show();
+                        $('.col-certPrivate').show();
+                        $('.col-certChained').show();
+                    }
+                } else {
                     $('.col-certPublic').hide();
                     $('.col-certPrivate').hide();
                     $('.col-certChained').hide();
-                } else {
-                    $('.col-certPublic').show();
-                    $('.col-certPrivate').show();
-                    $('.col-certChained').show();
+                    $('.col-leEnabled').hide();
                 }
             } else {
-                $('.col-certPublic').hide();
-                $('.col-certPrivate').hide();
-                $('.col-certChained').hide();
-                $('.col-leEnabled').hide();
+                $('.server').hide();
+                $('.clientOnly').show();
             }
         }
 
@@ -199,19 +207,23 @@
     <div class="row">
         <div class="col s12">
             <ul class="tabs">
-                <li class="tab col s3"><a href="#tab-server" class="translate active">Server settings</a></li>
-                <li class="tab col s3"><a href="#tab-main" class="translate">Main settings</a></li>
-                <li class="tab col s3"><a href="#tab-components" class="translate">Components</a></li>
-                <li class="tab col s3"><a href="#tab-envs" class="translate">Custom settings</a></li>
+                <li class="tab col s3"><a href="#tab-settings" class="translate active">Settings</a></li>
+                <li class="tab col s3 server"><a href="#tab-main" class="translate">Main settings</a></li>
+                <li class="tab col s3 server"><a href="#tab-components" class="translate">Components</a></li>
+                <li class="tab col s3 server"><a href="#tab-envs" class="translate">Custom settings</a></li>
             </ul>
         </div>
-        <div id="tab-server" class="col s12 page">
+        <div id="tab-settings" class="col s12 page">
             <div class="row">
                 <div class="col s6">
                     <img src="nightscout.png" class="logo">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-bottom: 20px"><div class="col s12 m4">
+                <input class="value" id="local" type="checkbox" />
+                <span class="translate" for="local">use integrated nightscout server</span>
+            </div></div>
+            <div class="row server">
                 <div class="col s12 m8 l5">
                     <select class="value" id="bind"></select>
                     <label class="translate" for="bind">IP</label>
@@ -221,7 +233,7 @@
                     <label class="translate" for="port">Port</label>
                 </div>
             </div>
-            <div class="row" style="padding-bottom: 20px">
+            <div class="row server" style="padding-bottom: 20px">
                 <div class="col s12 m4">
                     <input class="value" id="secure" type="checkbox" />
                     <span class="translate" for="secure">Secure(HTTPS)</span>
@@ -231,7 +243,7 @@
                     <span for="leEnabled" class="translate">Use Lets Encrypt certificates</span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row server">
                 <div class="col s12 m4 col-certPublic">
                     <select id="certPublic" class="value"></select>
                     <label class="translate" for="certPublic">Public certificate</label>
@@ -245,8 +257,13 @@
                     <label class="translate" for="certChained">Chained certificate</label>
                 </div>
             </div>
+            <div class="row clientOnly" style="padding-bottom: 20px"><div class="col s12 m4">
+                <input class="value" id="url" type="text" />
+                <span class="translate" for="url">remote nightscout URL</span>
+            </div></div>
         </div>
-        <div id="tab-main" class="col s12 page">
+
+        <div id="tab-main" class="col s12 page server">
             <div class="row">
                 <div class="input-field col s12 m6 l4">
                     <input id="mongo" class="value" type="text" />

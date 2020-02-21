@@ -62,17 +62,17 @@ systemDictionary = {
         "pl": "Zrób to sam. Projekt DIY oznacza w naszym przypadku, że nie ma firmy, z której można by kupić gotowy, funkcjonujący system. Elementy systemu są opracowywane i łączone przez uczestników projektu. Zostaną Ci dostarczone bezpłatnie. DIY oznacza, że musisz zrobić coś, aby system działał dla Ciebie. Mamy nadzieję, że DIY zainspiruje Cię tak bardzo, jak my - więc w pewnym momencie możesz wnieść niewielki wkład w ulepszenie systemu dla wszystkich.",
         "zh-cn": "自己做。在我们的案例中，DIY项目意味着没有公司可以从中购买完整的功能系统。系统的元素由项目参与者开发和组合。它们将免费提供给您。 DIY意味着您必须尽自己的努力使系统为您服务。我们希望DIY能像我们一样激励你 - 所以在某些时候你可以做出一点贡献，让每个人都能更好地使用这个系统。"
     },
-    "Server settings": {
-        "en": "Server settings",
-        "de": "Server Einstellungen",
-        "ru": "Настройки сервера",
-        "pt": "Configurações do servidor",
-        "nl": "Server instellingen",
-        "fr": "Paramètres du serveur",
-        "it": "Impostazioni del server",
-        "es": "Configuración del servidor",
-        "pl": "Ustawienia serwera",
-        "zh-cn": "服务器设置"
+    "Settings": {
+        "en": "Settings",
+        "de": "die Einstellungen",
+        "ru": "настройки",
+        "pt": "Configurações",
+        "nl": "instellingen",
+        "fr": "Réglages",
+        "it": "impostazioni",
+        "es": "Configuraciones",
+        "pl": "Ustawienia",
+        "zh-cn": "设定值"
     },
     "Components": {
         "en": "Components",
@@ -706,5 +706,28 @@ systemDictionary = {
         "zh-cn": "同意"
     },
     "Listen on all IPs": {                           "en": "Listen on all IPs",                               "de": "Alle IPs zulassen",                               "ru": "Открыть для всех IP адресов",                     "pt": "Ouça todos os IPs",                               "nl": "Luister op alle IP's",                            "fr": "Écoutez sur toutes les adresses IP",              "it": "Ascolta su tutti gli IP",                         "es": "Escuchar en todas las direcciones IP",            "pl": "Posłuchaj na wszystkich IP",                      "zh-cn": "监听所有IP"},
-
+    "use integrated nightscout server": {
+        "en": "use integrated nightscout server",
+        "de": "Verwenden Sie den integrierten Nightcout-Server",
+        "ru": "использовать встроенный сервер nightcout",
+        "pt": "use o servidor noturno integrado",
+        "nl": "gebruik de geïntegreerde nightscout-server",
+        "fr": "utiliser un serveur nightcout intégré",
+        "it": "usa il server notturno integrato",
+        "es": "utilizar el servidor integrado nightcout",
+        "pl": "użyj zintegrowanego serwera nightscout",
+        "zh-cn": "使用集成的Nightscout服务器"
+    },
+    "remote nightscout URL": {
+        "en": "remote nightscout URL",
+        "de": "externe Nightscout URL",
+        "ru": "URL удаленного ночного видения",
+        "pt": "URL de nightscout remoto",
+        "nl": "externe Nightscout URL",
+        "fr": "URL de Nightscout",
+        "it": "URL remoto di Nightscout",
+        "es": "URL remota de Nightscout",
+        "pl": "remote nightscout URL",
+        "zh-cn": "远程Nightscout URL"
+    },
 };

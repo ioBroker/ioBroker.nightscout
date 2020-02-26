@@ -89,9 +89,11 @@
         "materialize": true
     },
     "native": {
+        "local": true,
         "secure": false,
         "port": 1337,
         "bind": "127.0.0.1",
+        "url": "https://localhost:1337",
 
         "mongo": "mongodb://localhost:27017/nightscout",
         "enabled": "careportal basal",
@@ -384,6 +386,134 @@
                 "name": "Alarm",
                 "role": "indicator.alarm.health",
                 "type": "boolean",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.cage",
+            "type": "channel",
+            "common": {
+                "name": "Cannula age",
+                "role": "value",
+                "type": "number",
+                "unit": "h",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.cage.age",
+            "type": "state",
+            "common": {
+                "name": "Cannula age total hours",
+                "role": "value",
+                "type": "number",
+                "unit": "h",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.cage.days",
+            "type": "state",
+            "common": {
+                "name": "Cannula age days",
+                "role": "value",
+                "type": "number",
+                "unit": "d",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.cage.hours",
+            "type": "state",
+            "common": {
+                "name": "Cannula age hours",
+                "role": "value",
+                "type": "number",
+                "unit": "h",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.cage.changed",
+            "type": "state",
+            "common": {
+                "name": "Cannula changed",
+                "role": "value.time",
+                "type": "date",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.sage",
+            "type": "channel",
+            "common": {
+                "name": "Sensor age",
+                "role": "value",
+                "type": "number",
+                "unit": "h",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.sage.age",
+            "type": "state",
+            "common": {
+                "name": "Sensor age total hours",
+                "role": "value",
+                "type": "number",
+                "unit": "h",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.sage.days",
+            "type": "state",
+            "common": {
+                "name": "Sensor age days",
+                "role": "value",
+                "type": "number",
+                "unit": "d",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.sage.hours",
+            "type": "state",
+            "common": {
+                "name": "Sensor age hours",
+                "role": "value",
+                "type": "number",
+                "unit": "h",
+                "write": false,
+                "read": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "data.sage.changed",
+            "type": "state",
+            "common": {
+                "name": "Sensor changed",
+                "role": "value.time",
+                "type": "date",
                 "write": false,
                 "read": true
             },

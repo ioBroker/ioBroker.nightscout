@@ -211,22 +211,28 @@ function startAdapter(options) {
 }
 
 function start() {
-    if (!adapter.config.language) {
-        adapter.getForeignObject('system.config', (err, obj) => {
-            adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
+    if (adapter.config.local) {
+        if (!adapter.config.language) {
+            adapter.getForeignObject('system.config', (err, obj) => {
+                adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
+                Nightscout.startServer(adapter).then(() =>
+                    setTimeout(() => {
+                        client = new NightscoutClient(adapter, URL, secret);
+                        client.on('connection', connected => adapter.setState('info.connection', connected, true));
+                    }, 1000));
+            });
+        } else {
             Nightscout.startServer(adapter).then(() =>
                 setTimeout(() => {
                     client = new NightscoutClient(adapter, URL, secret);
                     client.on('connection', connected => adapter.setState('info.connection', connected, true));
                 }, 1000));
-        });
+        }
     } else {
-        Nightscout.startServer(adapter).then(() =>
-            setTimeout(() => {
-                client = new NightscoutClient(adapter, URL, secret);
-                client.on('connection', connected => adapter.setState('info.connection', connected, true));
-            }, 1000));
+        client = new NightscoutClient(adapter, URL, secret);
+        client.on('connection', connected => adapter.setState('info.connection', connected, true));
     }
+
 }
 
 function main() {
@@ -235,7 +241,11 @@ function main() {
     shasum.update(adapter.config.secret);
     secret = adapter.config.secret ? shasum.digest('hex') : '';
 
-    URL = `http${adapter.config.secure ? 's' : ''}://${adapter.config.bind}:${adapter.config.port}`;
+    if (adapter.config.local) {
+        URL = `http${adapter.config.secure ? 's' : ''}://${adapter.config.bind}:${adapter.config.port}`;
+    } else {
+        URL = adapter.config.url;
+    }
 
     adapter.subscribeStates('trigger.picture');
 

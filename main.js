@@ -128,19 +128,19 @@ function startAdapter(options) {
 
                                     online:                 true            // default value
                                 }, result => {
-                                    if (result.error) {
-                                        adapter.log.error('Cannot render website: ' + JSON.stringify(result.error));
+                                    if (!result || result.error) {
+                                        adapter.log.error('Cannot render website: ' + JSON.stringify(result && result.error));
                                         adapter.setState('trigger.picture', false, true);
                                     } else {
                                         adapter.setState('trigger.picture', true, true);
                                     }
-                                    if (result.stderr) {
+                                    if (result && result.stderr) {
                                         adapter.log.error('Cannot render website: ' + result.stderr);
                                     }
-                                    if (result.stdout) {
+                                    if (result && result.stdout) {
                                         adapter.log.debug('Nightscout rendered: ' + result.stdout);
                                     }
-                                    adapter.log.debug('Nightscout rendered: ' + result.output);
+                                    adapter.log.debug('Nightscout rendered: ' + (result && result.output));
                                     adapter.log.debug('Picture can be find under phantomjs.0.pictures.nightscout_png');
                                 });
                             })

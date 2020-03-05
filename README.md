@@ -92,6 +92,10 @@ on('nightscout.0.data.mgdl', obj => {
 
 
 ## Changelog
+## 0.10.0 (2020-02-27)
+* (Volker Richert) Added the possibility to use the external nightscout server again
+* (Volker Richert) Added the cage & sage to the objects
+
 ### 0.9.10 (2020-02-14)
 * (Volker Richert) Fixed last Updated value
 

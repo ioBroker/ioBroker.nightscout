@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.9.7",
+        "version": "0.10.0",
         "news": {
+            "0.10.0": {
+                "en": "Added the possibility to use the external nightscout server again\nAdded the cage & sage to the objects",
+                "de": "Es wurde die Möglichkeit hinzugefügt, den externen Nightcout-Server erneut zu verwenden\nKäfig & Salbei zu den Objekten hinzugefügt",
+                "ru": "Добавлена возможность снова использовать внешний сервер nightcout\nДобавил клетку и шалфей к объектам",
+                "pt": "Foi adicionada a possibilidade de usar o servidor externo noturno novamente\nAdicionado gaiola e sálvia aos objetos",
+                "nl": "De mogelijkheid toegevoegd om de externe nightscout-server opnieuw te gebruiken\nDe kooi en salie toegevoegd aan de objecten",
+                "fr": "Ajout de la possibilité d'utiliser à nouveau le serveur de nightcout externe\nAjout de la cage et de la sauge aux objets",
+                "it": "Aggiunta la possibilità di utilizzare nuovamente il server nightscout esterno\nAggiunta la gabbia e la salvia agli oggetti",
+                "es": "Se agregó la posibilidad de volver a usar el servidor externo de nightcout\nSe agregó la jaula y la salvia a los objetos.",
+                "pl": "Dodano możliwość ponownego korzystania z zewnętrznego serwera nightscout\nDodano klatkę i szałwię do obiektów",
+                "zh-cn": "添加了再次使用外部Nightscout服务器的可能性\n将笼子和鼠尾草添加到对象中"
+            },
             "0.9.7": {
               "en": "Fixed last Updated value",
               "de": "Letzter aktualisierter Wert behoben",

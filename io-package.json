@@ -1,19 +1,31 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.10.0",
+        "version": "0.10.1",
         "news": {
+            "0.10.1": {
+                "en": "small bugfix",
+                "de": "kleiner Bugfix",
+                "ru": "небольшое исправление",
+                "pt": "pequeno bugfix",
+                "nl": "kleine bugfix",
+                "fr": "petit bugfix",
+                "it": "piccolo bugfix",
+                "es": "pequeña corrección de errores",
+                "pl": "mała poprawka",
+                "zh-cn": "小错误修正"
+            },
             "0.10.0": {
-                "en": "Added the possibility to use the external nightscout server again\nAdded the cage & sage to the objects",
-                "de": "Es wurde die Möglichkeit hinzugefügt, den externen Nightcout-Server erneut zu verwenden\nKäfig & Salbei zu den Objekten hinzugefügt",
-                "ru": "Добавлена возможность снова использовать внешний сервер nightcout\nДобавил клетку и шалфей к объектам",
-                "pt": "Foi adicionada a possibilidade de usar o servidor externo noturno novamente\nAdicionado gaiola e sálvia aos objetos",
-                "nl": "De mogelijkheid toegevoegd om de externe nightscout-server opnieuw te gebruiken\nDe kooi en salie toegevoegd aan de objecten",
-                "fr": "Ajout de la possibilité d'utiliser à nouveau le serveur de nightcout externe\nAjout de la cage et de la sauge aux objets",
-                "it": "Aggiunta la possibilità di utilizzare nuovamente il server nightscout esterno\nAggiunta la gabbia e la salvia agli oggetti",
-                "es": "Se agregó la posibilidad de volver a usar el servidor externo de nightcout\nSe agregó la jaula y la salvia a los objetos.",
-                "pl": "Dodano możliwość ponownego korzystania z zewnętrznego serwera nightscout\nDodano klatkę i szałwię do obiektów",
-                "zh-cn": "添加了再次使用外部Nightscout服务器的可能性\n将笼子和鼠尾草添加到对象中"
+                "en": " Add the possibility to use an external nightscout server again and add the cage & sage ",
+                "de": " Fügen Sie die Möglichkeit hinzu, einen externen Nightcout-Server erneut zu verwenden, und fügen Sie den Käfig und den Salbei hinzu",
+                "ru": " Добавьте возможность снова использовать внешний сервер nightcout и добавьте cage & sage",
+                "pt": " Adicione a possibilidade de usar um servidor externo noturno novamente e adicione a gaiola e o sábio",
+                "nl": " Voeg de mogelijkheid toe om opnieuw een externe nachtcoutserver te gebruiken en voeg de kooi & salie toe",
+                "fr": " Ajouter la possibilité d'utiliser à nouveau un serveur de nightcout externe et d'ajouter la cage et la sauge",
+                "it": " Aggiungi la possibilità di utilizzare di nuovo un server notturno esterno e aggiungi la gabbia e la salvia",
+                "es": " Agregue la posibilidad de usar un servidor externo de nightcout nuevamente y agregue la jaula y la salvia",
+                "pl": " Dodaj możliwość ponownego użycia zewnętrznego serwera Nightcout i dodaj klatkę i szałwię",
+                "zh-cn": " 添加再次使用外部Nightscout服务器的可能性，并添加笼子和鼠尾草"
             },
             "0.9.7": {
               "en": "Fixed last Updated value",

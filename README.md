@@ -1,5 +1,5 @@
 ![Logo](admin/nightscout.png)
-# Nightscout server
+# Nightscout server & client
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.nightscout.svg)](https://www.npmjs.com/package/iobroker.nightscout)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.nightscout.svg)](https://www.npmjs.com/package/iobroker.nightscout)
@@ -44,7 +44,7 @@
    We hope that DIY will inspire you as much as we do - so at some point you can make a small contribution to making the system better for everyone.
 
 ## Description
-This adapter starts the nightscout server from this repository: https://github.com/nightscout/cgm-remote-monitor
+This adapter starts the nightscout server from this repository: https://github.com/nightscout/cgm-remote-monitor or uses such a server remotely.
 
 For the detailed information read Nightscout documentation [here](https://nightscout-user-guide.readthedocs.io/).
 
@@ -53,15 +53,20 @@ See [requirements](#requirements).
 In case you are using local mongoDB the connection string looks like `mongodb://localhost:27017/iobroker`
 
 ## Requirements
-### Installed and running mongo DB.
+### In server mode
+#### Installed and running mongo DB.
 It could be cloud DB or local DB, that could be installed from here: https://www.mongodb.com/download-center/community.
 
 Under Debian the MongoDB could be installed as: `apt-get install mongodb` or `sudo apt-get install mongodb` if the user is not `root`.
 
-### ioBroker.iot
+#### ioBroker.iot
 If you want to write the sugar monitoring values on the way, you need the running and configured IoT adapter.
 
 You can write the values into https://nightscout.iobroker.in and the **secret as your login on iobroker.pro**.
+
+### In client mode
+You need a running nightscout server instance and it's api accessable via http or https.
+
 
 ## Use cases
 ### Monitor value and report via telegram
@@ -92,9 +97,12 @@ on('nightscout.0.data.mgdl', obj => {
 
 
 ## Changelog
-## 0.10.0 (2020-02-27)
-* (Volker Richert) Added the possibility to use the external nightscout server again
-* (Volker Richert) Added the cage & sage to the objects
+### 0.10.1 (2020-02-05)
+* (Volker Richert) small fix for treatment has no eventType
+
+### 0.10.0 (2020-02-27)
+* (Volker Richert) add client only mode again to allow the usage on an external nightscout server
+* (Volker Richert) add sage and cage
 
 ### 0.9.10 (2020-02-14)
 * (Volker Richert) Fixed last Updated value

@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.10.1",
+        "version": "0.10.2",
         "news": {
+            "0.10.2": {
+                "en": "change unit of reservoir level",
+                "de": "Einheit des Vorratsbehälters ändern",
+                "ru": "изменить единицу уровня резервуара",
+                "pt": "alterar unidade do nível do reservatório",
+                "nl": "verander eenheid van reservoirniveau",
+                "fr": "changer l'unité du niveau du réservoir",
+                "it": "cambia unità di livello del serbatoio",
+                "es": "cambiar la unidad del nivel del depósito",
+                "pl": "zmienić jednostkę poziomu w zbiorniku",
+                "zh-cn": "储层水位变化单位"
+            },
             "0.10.1": {
                 "en": "small bugfix",
                 "de": "kleiner Bugfix",
@@ -245,9 +257,8 @@
                 "name": "Reservoir level",
                 "role": "value.fill",
                 "type": "number",
-                "unit": "%",
+                "unit": "U",
                 "min": 0,
-                "max": 100,
                 "write": false,
                 "read": true
             },

@@ -97,7 +97,10 @@ on('nightscout.0.data.mgdl', obj => {
 
 
 ## Changelog
-### 0.10.1 (2020-02-05)
+### 0.10.2 (2020-03-06)
+* (Volker Richert) Change unit of reservoir level from % to absolute value
+
+### 0.10.1 (2020-03-05)
 * (Volker Richert) small fix for treatment has no eventType
 
 ### 0.10.0 (2020-02-27)

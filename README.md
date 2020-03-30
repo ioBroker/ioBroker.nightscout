@@ -59,6 +59,17 @@ It could be cloud DB or local DB, that could be installed from here: https://www
 
 Under Debian the MongoDB could be installed as: `apt-get install mongodb` or `sudo apt-get install mongodb` if the user is not `root`.
 
+Following commands could work for Debian if `apt-get install mongodb` could not find a package:
+
+```
+wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+sudo systemctl daemon-reload
+sudo systemctl start mongod
+``` 
+
 #### ioBroker.iot
 If you want to write the sugar monitoring values on the way, you need the running and configured IoT adapter.
 

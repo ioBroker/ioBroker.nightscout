@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.10.3",
+        "version": "0.10.4",
         "news": {
-            "0.10.3": {
+            "0.10.4": {
                 "en": "Allowed node.js 12",
                 "de": "Zulässigt node.js 12",
                 "ru": "Разрешен node.js 12",

@@ -120,7 +120,7 @@ on('nightscout.0.data.mgdl', obj => {
 
 
 ## Changelog
-### 0.10.3 (2020-03-06)
+### 0.10.4 (2020-03-30)
 * (bluefox) Allowed node.js 12
 
 ### 0.10.2 (2020-03-06)

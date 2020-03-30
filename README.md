@@ -73,10 +73,22 @@ sudo systemctl start mongod
 #### ioBroker.iot
 If you want to write the sugar monitoring values on the way, you need the running and configured IoT adapter.
 
-You can write the values into https://nightscout.iobroker.in and the **secret as your login on iobroker.pro**.
+You can write the values into https://nightscout.iobroker.in and the **secret from iobroker.iot configuration**.
+
+![config](img/config.png)
+
+To push the values into local nightscout with xDrip+ you must enter in Basis URL `https://<SEE IoT CONFIG API-secret>@nightscout.iobroker.in/api/v1/`.
+
+Like here:
+
+![xdrip](img/xdrip.png)
+
+You can access your local nightscout server via iot cloud. For that you must open in browser `https://nightscout.iobroker.in/` and enter your secret from 
+
+**Remember that cloud access and local access require different API secrets!**
 
 ### In client mode
-You need a running nightscout server instance and it's api accessable via http or https.
+You need a running nightscout server instance and it's api accessible via http or https.
 
 
 ## Use cases

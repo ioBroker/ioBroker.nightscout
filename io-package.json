@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.10.2",
+        "version": "0.10.3",
         "news": {
+            "0.10.3": {
+                "en": "Allowed node.js 12",
+                "de": "Zulässigt node.js 12",
+                "ru": "Разрешен node.js 12",
+                "pt": "Nó permitido.js 12",
+                "nl": "Toegestane node.js 12",
+                "fr": "Node.js 12 autorisé",
+                "it": "Nodo autorizzato.js 12",
+                "es": "Nodo permitido.js 12",
+                "pl": "Dozwolony node.js 12",
+                "zh-cn": "允许的node.js 12"
+            },
             "0.10.2": {
                 "en": "change unit of reservoir level",
                 "de": "Einheit des Vorratsbehälters ändern",

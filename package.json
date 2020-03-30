@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nightscout",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "Provides nightscout server and client for sugar monitoring",
   "author": {
     "name": "bluefox",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/ioBroker/ioBroker.nightscout",
   "license": "AGPL-3.0",
   "engines": {
-    "node": "^10.15.2 || ^8.15.1"
+    "node": "^12.16.1 || ^10.15.2 || ^8.15.1"
   },
   "keywords": [
     "sugar monitoring",

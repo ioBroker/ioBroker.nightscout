@@ -97,6 +97,9 @@ on('nightscout.0.data.mgdl', obj => {
 
 
 ## Changelog
+### 0.10.3 (2020-03-06)
+* (bluefox) Allowed node.js 12
+
 ### 0.10.2 (2020-03-06)
 * (Volker Richert) Change unit of reservoir level from % to absolute value
 

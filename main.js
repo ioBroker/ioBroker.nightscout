@@ -10,6 +10,7 @@ const Nightscout = require('./lib/nightscout');
 const request = require('request');
 const crypto = require('crypto');
 const NightscoutClient = require('./lib/client');
+const getImage = require('./lib/getImage');
 
 /**
  * The adapter instance
@@ -157,54 +158,100 @@ function startAdapter(options) {
         // requires "common.message" property to be set to true in io-package.json
         message: obj => {
             if (typeof obj === 'object' && obj.message) {
-                // expected
-                // {
-                //       path: '/api/v1/status.json',
-                //       method: 'GET',
-                //       body: json,
-                // }
-                if (typeof obj.message === 'string') {
-                    try {
-                        obj.message = JSON.parse(obj.message);
-                    } catch (e) {
-                        return obj.callback && adapter.sendTo(obj.from, obj.command, {error: 'cannot parse message'}, obj.callback);
+
+                if (obj.command === 'send') {
+                    // expected
+                    // {
+                    //       path: '/api/v1/status.json',
+                    //       method: 'GET',
+                    //       body: json,
+                    // }
+                    if (typeof obj.message === 'string') {
+                        try {
+                            obj.message = JSON.parse(obj.message);
+                        } catch (e) {
+                            return obj.callback && adapter.sendTo(obj.from, obj.command, {error: 'cannot parse message'}, obj.callback);
+                        }
                     }
-                }
 
-                const query = {
-                    url: URL + obj.message.path,
-                    method: (obj.message.method || 'GET').toUpperCase()
-                };
-                if (obj.message.body && typeof obj.message.body === 'string' && (obj.message.body[0] === '[' || obj.message.body[0] === '{')) {
-                    try {
-                        obj.message.body = JSON.parse(obj.message.body);
-                    } catch (e) {
+                    const query = {
+                        url: URL + obj.message.path,
+                        method: (obj.message.method || 'GET').toUpperCase()
+                    };
+
+                    if (obj.message.body && typeof obj.message.body === 'string' && (obj.message.body[0] === '[' || obj.message.body[0] === '{')) {
+                        try {
+                            obj.message.body = JSON.parse(obj.message.body);
+                        } catch (e) {
+                        }
                     }
-                }
 
-                const id = obj.message.id;
+                    const id = obj.message.id;
 
-                query.headers = {
-                    'api-secret': secret,
-                    'accept': '*/*'
-                };
+                    query.headers = {
+                        'api-secret': secret,
+                        'accept': '*/*'
+                    };
 
-                if (query.method !== 'GET') {
-                    if (typeof obj.message.body === 'object') {
-                        query.json = obj.message.body;
-                        query.headers['content-type'] = 'application/json';
+                    if (query.method !== 'GET') {
+                        if (typeof obj.message.body === 'object') {
+                            query.json = obj.message.body;
+                            query.headers['content-type'] = 'application/json';
+                        } else {
+                            query.body = obj.message.body;
+                        }
+                    }
+
+                    query.url = query.url.replace(/secret=[^&]*/, 'secret=' + secret);
+
+                    adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
+                    request(query, (err, state, body) => {
+                        adapter.log.debug('Response to IoT: ' + JSON.stringify(body));
+                        obj.callback && adapter.sendTo(obj.from, obj.command, id ? {id, body, 'content-type': state && state.headers && state.headers['content-type']} : body, obj.callback);
+                    });
+                } else if (obj.command === 'chart') {
+                    // expected:
+                    // {
+                    //      from: timestamp // default now - 3 hours
+                    //      to:   timestamp // default now
+                    //      width: image width // default 720
+                    //      height: image width // default 480
+                    //      format: svg/png/jpg // default png
+                    // }
+                    const now = Date.now();
+
+                    const defaults = {
+                        start: now - 3 * 3600000,
+                        end: now,
+                        width: 720,
+                        height: 480,
+                        format: 'png'
+                    };
+
+                    obj.message = Object.assign(defaults, obj.message || {});
+
+                    if (!adapter.__defaultHistory) {
+                        getImage('no history instance', obj.message.min, obj.message.max, obj.message.format)
+                            .then(image => obj.callback && adapter.sendTo(obj.from, obj.command, {result: image}, obj.callback))
+                            .catch(e => obj.callback && adapter.sendTo(obj.from, obj.command, {error: e}, obj.callback));
                     } else {
-                        query.body = obj.message.body;
+                        adapter.sendTo(adapter.__defaultHistory, 'getHistory', {
+                            id: adapter.namespace + '.data.mgdl',
+                            options: {
+                                start:      obj.message.start,
+                                end:        obj.message.end,
+                                aggregate: 'none' // or 'none' to get raw values
+                            }
+                        }, result => {
+                            if (!result || result.result) {
+                                result.result = (result && result.error) || 'no data received';
+                            }
+                            getImage(result.result, obj.message.min, obj.message.max, obj.message.format)
+                                .then(image => obj.callback && adapter.sendTo(obj.from, obj.command, {result: image}, obj.callback))
+                                .catch(e => obj.callback && adapter.sendTo(obj.from, obj.command, {error: e}, obj.callback));
+                        });
                     }
                 }
-
-                query.url = query.url.replace(/secret=[^&]*/, 'secret=' + secret);
-
-                adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
-                request(query, (err, state, body) => {
-                    adapter.log.debug('Response to IoT: ' + JSON.stringify(body));
-                    obj.callback && adapter.sendTo(obj.from, obj.command, id ? {id, body, 'content-type': state && state.headers && state.headers['content-type']} : body, obj.callback);
-                });
             }
         },
     }));
@@ -240,6 +287,14 @@ function main() {
     const shasum = crypto.createHash('sha1');
     shasum.update(adapter.config.secret);
     secret = adapter.config.secret ? shasum.digest('hex') : '';
+
+    adapter.getForeignObject('system.config', (err, obj) => {
+        if (!obj || !obj.common || !obj.common.defaultHistory) {
+            adapter.log.warn('No default history selected, so charts will not work');
+        } else {
+            adapter.__defaultHistory = obj.common.defaultHistory;
+        }
+    });
 
     if (adapter.config.local) {
         URL = `http${adapter.config.secure ? 's' : ''}://${adapter.config.bind}:${adapter.config.port}`;

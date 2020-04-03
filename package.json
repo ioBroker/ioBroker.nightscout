@@ -21,10 +21,14 @@
     "url": "https://github.com/ioBroker/ioBroker.nightscout"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^1.0.3",
-    "moment": "^2.24.0",
+    "@iobroker/adapter-core": "^2.2.1",
     "nightscout": "0.12.7",
-    "request": "^2.88.0",
+    "canvas": "^2.6.1",
+    "echarts": "^4.7.0",
+    "jsdom": "^16.2.2",
+    "sharp": "~0.24.1",
+    "moment": "^2.24.0",
+    "request": "^2.88.2",
     "socket.io-client": "~2.1.1"
   },
   "devDependencies": {

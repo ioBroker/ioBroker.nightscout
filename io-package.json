@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.11.0",
+        "version": "0.11.1",
         "news": {
-            "0.11.0": {
+            "0.11.1": {
                 "en": "Added the possibility of the getting the chart of sugar",
                 "de": "Es wurde die Möglichkeit hinzugefügt, die Zuckerkarte zu erhalten",
                 "ru": "Добавлена возможность получения графика сахара",

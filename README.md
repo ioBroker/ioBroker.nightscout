@@ -139,7 +139,7 @@ sendTo('nightscout.0', 'chart', {
 - Allow to configure api-secret for foreign nightscout server
  
 ## Changelog
-### 0.11.1 (2020-04-04)
+### 0.11.2 (2020-04-04)
 * (bluefox) Added the possibility of the getting the chart of sugar
 
 ### 0.10.4 (2020-03-30)

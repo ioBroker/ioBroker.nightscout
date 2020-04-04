@@ -117,9 +117,31 @@ on('nightscout.0.data.mgdl', obj => {
 ```
 **Notice: to get the chart as an image the phantomjs adapter must be installed and running**
 
+### Send charts via telegram or email
+You can write a script:
+```
+sendTo('nightscout.0', 'chart', {
+    format: 'png', // optional. Default value 'png
+    max: 180, // optional upper alarm limit. Default value 180 
+    min: 80, // optional lower alarm limit. Default value 80
+    width: 720, // optional image width. Default value 720
+    height: 480, // optional image height. Default value 480
+    start: Date.now() - 3 * 3600000, // optional time start = (now - 3 hours)
+    end: Date.now(), // optional time end
+}, result => {
+    const data = result.result.split(',')[1];
+    require('fs').writeFileSync('/tmp/chart.png', Buffer.from(data, 'base64'));
+    sendTo('telegram.0', {text: '/tmp/chart.png', caption: 'Chart'});
+});
+```
 
-
+## Todo
+- Allow to configure api-secret for foreign nightscout server
+ 
 ## Changelog
+### 0.11.0 (2020-04-04)
+* (bluefox) Added the possibility of the getting the chart of sugar
+
 ### 0.10.4 (2020-03-30)
 * (bluefox) Allowed node.js 12
 

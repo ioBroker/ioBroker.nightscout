@@ -10,7 +10,7 @@ const Nightscout = require('./lib/nightscout');
 const request = require('request');
 const crypto = require('crypto');
 const NightscoutClient = require('./lib/client');
-const getImage = require('./lib/getImage');
+let getImage;
 
 /**
  * The adapter instance
@@ -158,7 +158,9 @@ function startAdapter(options) {
         // requires "common.message" property to be set to true in io-package.json
         message: obj => {
             if (typeof obj === 'object' && obj.message) {
-
+                if (!obj.callback) {
+                    return;
+                }
                 if (obj.command === 'send') {
                     // expected
                     // {
@@ -170,7 +172,7 @@ function startAdapter(options) {
                         try {
                             obj.message = JSON.parse(obj.message);
                         } catch (e) {
-                            return obj.callback && adapter.sendTo(obj.from, obj.command, {error: 'cannot parse message'}, obj.callback);
+                            return adapter.sendTo(obj.from, obj.command, {error: 'cannot parse message'}, obj.callback);
                         }
                     }
 
@@ -207,9 +209,10 @@ function startAdapter(options) {
                     adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
                     request(query, (err, state, body) => {
                         adapter.log.debug('Response to IoT: ' + JSON.stringify(body));
-                        obj.callback && adapter.sendTo(obj.from, obj.command, id ? {id, body, 'content-type': state && state.headers && state.headers['content-type']} : body, obj.callback);
+                        adapter.sendTo(obj.from, obj.command, id ? {id, body, 'content-type': state && state.headers && state.headers['content-type']} : body, obj.callback);
                     });
-                } else if (obj.command === 'chart') {
+                } else
+                if (obj.command === 'chart') {
                     // expected:
                     // {
                     //      from: timestamp // default now - 3 hours
@@ -228,32 +231,42 @@ function startAdapter(options) {
                         format: 'png'
                     };
 
+                    try {
+                        getImage = getImage || require('./lib/getImage');
+                    } catch (e) {
+                        return adapter.sendTo(obj.from, obj.command, {error: 'Cannot load getImage: ' + e}, obj.callback);
+                    }
+
                     obj.message = Object.assign(defaults, obj.message || {});
 
-                    if (!adapter.__defaultHistory) {
-                        getImage('no history instance', obj.message.min, obj.message.max, obj.message.format)
-                            .then(image => obj.callback && adapter.sendTo(obj.from, obj.command, {result: image}, obj.callback))
-                            .catch(e => obj.callback && adapter.sendTo(obj.from, obj.command, {error: e}, obj.callback));
+                    let host;
+                    if (adapter.config.local) {
+                        host = `http://${adapter.config.bind}:${adapter.config.port}`;
                     } else {
-                        adapter.sendTo(adapter.__defaultHistory, 'getHistory', {
-                            id: adapter.namespace + '.data.mgdl',
-                            options: {
-                                start:      obj.message.start,
-                                end:        obj.message.end,
-                                aggregate: 'none' // or 'none' to get raw values
-                            }
-                        }, result => {
-                            if (!result || result.result) {
-                                result.result = (result && result.error) || 'no data received';
-                            }
-                            getImage(result.result, obj.message.min, obj.message.max, obj.message.format)
-                                .then(image => obj.callback && adapter.sendTo(obj.from, obj.command, {result: image}, obj.callback))
-                                .catch(e => obj.callback && adapter.sendTo(obj.from, obj.command, {error: e}, obj.callback));
-                        });
+                        host = adapter.config.url;
                     }
+
+                    const url = `${host}/api/v1/entries.json?find[date][$gte]=${new Date(obj.message.start).getTime()}&find[date][$lt]=${new Date(obj.message.end).getTime()}&count=10000`;
+                    request(url,
+                        {headers: {'api-secret': secret}
+                        }, (err, state, body) => {
+                            if (body) {
+                                try {
+                                    body = JSON.parse(body);
+                                } catch (e) {
+                                    return adapter.sendTo(obj.from, obj.command, {error: 'Cannot parse data: ' + e}, obj.callback);
+                                }
+
+                                getImage(body, obj.message)
+                                    .then(image => adapter.sendTo(obj.from, obj.command, {result: image}, obj.callback))
+                                    .catch(e => adapter.sendTo(obj.from, obj.command, {error: e}, obj.callback));
+                            } else {
+                                adapter.sendTo(obj.from, obj.command, {error: 'Cannot load data: ' + (err || (state && state.statusCode))}, obj.callback);
+                            }
+                        });
                 }
             }
-        },
+        }
     }));
 }
 

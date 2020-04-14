@@ -228,7 +228,8 @@ function startAdapter(options) {
                         end: now,
                         width: 720,
                         height: 480,
-                        format: 'png'
+                        format: 'png',
+                        lang: adapter.config.language
                     };
 
                     try {
@@ -247,23 +248,22 @@ function startAdapter(options) {
                     }
 
                     const url = `${host}/api/v1/entries.json?find[date][$gte]=${new Date(obj.message.start).getTime()}&find[date][$lt]=${new Date(obj.message.end).getTime()}&count=10000`;
-                    request(url,
-                        {headers: {'api-secret': secret}
-                        }, (err, state, body) => {
-                            if (body) {
-                                try {
-                                    body = JSON.parse(body);
-                                } catch (e) {
-                                    return adapter.sendTo(obj.from, obj.command, {error: 'Cannot parse data: ' + e}, obj.callback);
-                                }
 
-                                getImage(body, obj.message)
-                                    .then(image => adapter.sendTo(obj.from, obj.command, {result: image}, obj.callback))
-                                    .catch(e => adapter.sendTo(obj.from, obj.command, {error: e}, obj.callback));
-                            } else {
-                                adapter.sendTo(obj.from, obj.command, {error: 'Cannot load data: ' + (err || (state && state.statusCode))}, obj.callback);
+                    request(url, {headers: {'api-secret': secret}}, (err, state, body) => {
+                        if (body) {
+                            try {
+                                body = JSON.parse(body);
+                            } catch (e) {
+                                return adapter.sendTo(obj.from, obj.command, {error: 'Cannot parse data: ' + e}, obj.callback);
                             }
-                        });
+
+                            getImage(body, obj.message)
+                                .then(image => adapter.sendTo(obj.from, obj.command, {result: image}, obj.callback))
+                                .catch(e => adapter.sendTo(obj.from, obj.command, {error: e}, obj.callback));
+                        } else {
+                            adapter.sendTo(obj.from, obj.command, {error: 'Cannot load data: ' + (err || (state && state.statusCode))}, obj.callback);
+                        }
+                    });
                 }
             }
         }

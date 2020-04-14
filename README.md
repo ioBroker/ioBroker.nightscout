@@ -128,6 +128,7 @@ sendTo('nightscout.0', 'chart', {
     height: 480, // optional image height. Default value 480
     start: Date.now() - 3 * 3600000, // optional time start = (now - 3 hours)
     end: Date.now(), // optional time end
+    title: 'Blood glucose', // optional
 }, result => {
     const data = result.result.split(',')[1];
     require('fs').writeFileSync('/tmp/chart.png', Buffer.from(data, 'base64'));

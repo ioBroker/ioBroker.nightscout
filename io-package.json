@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.11.2",
+        "version": "0.11.3",
         "news": {
+            "0.11.3": {
+                "en": "cage & sage will be updated based on current data if not treatments available",
+                "de": "Käfig & Salbei werden basierend auf den aktuellen Daten aktualisiert, wenn keine Behandlungen verfügbar sind",
+                "ru": "Клетка и шалфей будут обновлены на основе текущих данных, если не доступны методы лечения",
+                "pt": "gaiola e sálvia serão atualizados com base nos dados atuais, se não houver tratamentos disponíveis",
+                "nl": "kooi & salie zal worden bijgewerkt op basis van de huidige gegevens als er geen behandelingen beschikbaar zijn",
+                "fr": "la cage et la sauge seront mises à jour sur la base des données actuelles si aucun traitement n'est disponible",
+                "it": "gabbia e salvia saranno aggiornate in base ai dati attuali se non sono disponibili trattamenti",
+                "es": "la jaula y la salvia se actualizarán según los datos actuales si no hay tratamientos disponibles",
+                "pl": "klatka i szałwia zostaną zaktualizowane na podstawie bieżących danych, jeśli nie będą dostępne zabiegi",
+                "zh-cn": "如果没有可用的治疗方法，笼子和鼠尾草将根据当前数据进行更新"
+            },
             "0.11.2": {
                 "en": "Added the possibility of the getting the chart of sugar",
                 "de": "Es wurde die Möglichkeit hinzugefügt, die Zuckerkarte zu erhalten",
@@ -259,7 +271,7 @@
             "common": {
                 "name": "Pump time",
                 "role": "value.time",
-                "type": "date",
+                "type": "number",
                 "write": false,
                 "read": true
             },
@@ -399,7 +411,7 @@
             "common": {
                 "name": "Last update",
                 "role": "state",
-                "type": "date",
+                "type": "number",
                 "write": false,
                 "read": true
             },
@@ -511,7 +523,7 @@
             "common": {
                 "name": "Cannula changed",
                 "role": "value.time",
-                "type": "date",
+                "type": "number",
                 "write": false,
                 "read": true
             },
@@ -575,7 +587,7 @@
             "common": {
                 "name": "Sensor changed",
                 "role": "value.time",
-                "type": "date",
+                "type": "number",
                 "write": false,
                 "read": true
             },

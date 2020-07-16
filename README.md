@@ -140,6 +140,9 @@ sendTo('nightscout.0', 'chart', {
 - Allow to configure api-secret for foreign nightscout server
  
 ## Changelog
+### 0.11.3 (2020-07-14)
+* (Volker Richert) update ages even if no treatments available
+
 ### 0.11.2 (2020-04-04)
 * (bluefox) Added the possibility of the getting the chart of sugar
 

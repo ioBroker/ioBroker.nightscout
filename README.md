@@ -137,11 +137,16 @@ sendTo('nightscout.0', 'chart', {
 ```
 
 ## Todo
-- Allow to configure api-secret for foreign nightscout server
- 
+- Allow the configuring of the api-secret for foreign nightscout server
+
+<!--
+	Placeholder for the next version (at the beginning of the line):
+	### __WORK IN PROGRESS__
+-->
+
 ## Changelog
-### 0.11.3 (2020-07-14)
-* (Volker Richert) update ages even if no treatments available
+### __WORK IN PROGRESS__
+* (bluefox) corrected the notification timestamp
 
 ### 0.11.2 (2020-04-04)
 * (bluefox) Added the possibility of the getting the chart of sugar

@@ -34,6 +34,7 @@
     "socket.io-client": "~2.1.1"
   },
   "devDependencies": {
+    "@alcalzone/release-script": "^1.8.1",
     "@iobroker/testing": "^1.2.5",
     "@types/chai": "^4.2.10",
     "@types/chai-as-promised": "^7.1.0",
@@ -60,7 +61,8 @@
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
-    "lint": "eslint"
+    "lint": "eslint",
+    "release": "node node_modules/@alcalzone/release-script/bin/release.js"
   },
   "bugs": {
     "url": "https://github.com/ioBroker/ioBroker.nightscout/issues"

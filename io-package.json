@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.11.3",
+        "version": "0.11.4",
         "news": {
+            "0.11.4": {
+                "en": "corrected the notification timestamp",
+                "de": "Der Benachrichtigungszeitstempel wurde korrigiert",
+                "ru": "исправлена отметка времени уведомления",
+                "pt": "corrigiu o carimbo de data / hora da notificação",
+                "nl": "het tijdstempel van de melding gecorrigeerd",
+                "fr": "correction de l'horodatage de la notification",
+                "it": "corretto il timestamp della notifica",
+                "es": "se corrigió la marca de tiempo de la notificación",
+                "pl": "poprawiono sygnaturę czasową powiadomienia",
+                "zh-cn": "更正了通知时间戳"
+            },
             "0.11.3": {
                 "en": "cage & sage will be updated based on current data if not treatments available",
                 "de": "Käfig & Salbei werden basierend auf den aktuellen Daten aktualisiert, wenn keine Behandlungen verfügbar sind",
@@ -76,16 +88,16 @@
                 "zh-cn": " 添加再次使用外部Nightscout服务器的可能性，并添加笼子和鼠尾草"
             },
             "0.9.7": {
-              "en": "Fixed last Updated value",
-              "de": "Letzter aktualisierter Wert behoben",
-              "ru": "Фиксированное последнее обновленное значение",
-              "pt": "Último valor atualizado fixo",
-              "nl": "Vaste laatst bijgewerkte waarde",
-              "fr": "Correction de la dernière valeur mise à jour",
-              "it": "Risolto l'ultimo valore aggiornato",
-              "es": "Se corrigió el último valor actualizado",
-              "pl": "Naprawiono ostatnią zaktualizowaną wartość",
-              "zh-cn": "固定最近更新的值"
+                "en": "Fixed last Updated value",
+                "de": "Letzter aktualisierter Wert behoben",
+                "ru": "Фиксированное последнее обновленное значение",
+                "pt": "Último valor atualizado fixo",
+                "nl": "Vaste laatst bijgewerkte waarde",
+                "fr": "Correction de la dernière valeur mise à jour",
+                "it": "Risolto l'ultimo valore aggiornato",
+                "es": "Se corrigió el último valor actualizado",
+                "pl": "Naprawiono ostatnią zaktualizowaną wartość",
+                "zh-cn": "固定最近更新的值"
             },
             "0.9.6": {
                 "en": "Used newer version of nightscout",
@@ -166,7 +178,6 @@
         "port": 1337,
         "bind": "127.0.0.1",
         "url": "https://localhost:1337",
-
         "mongo": "mongodb://localhost:27017/nightscout",
         "enabled": "careportal basal",
         "units": "mg/dl",
@@ -175,21 +186,27 @@
         "language": "",
         "allowUnauthorized": false,
         "pumpFields": "reservoir battery",
-        "envs": [{"name": "ENV_VARIABLE_EXAMPLE", "value": "value"}],
+        "envs": [
+            {
+                "name": "ENV_VARIABLE_EXAMPLE",
+                "value": "value"
+            }
+        ],
         "certPublic": "",
         "certPrivate": "",
         "certChained": "",
         "licenseAccepted": false,
         "osDependencies": {
-            "linux": ["mongodb"]
+            "linux": [
+                "mongodb"
+            ]
         },
-
         "leEnabled": false
     },
     "objects": [],
     "instanceObjects": [
         {
-            "_id":  "info",
+            "_id": "info",
             "type": "channel",
             "common": {
                 "name": "Information"
@@ -197,20 +214,20 @@
             "native": {}
         },
         {
-            "_id":  "info.connection",
+            "_id": "info.connection",
             "type": "state",
             "common": {
-                "role":  "indicator.connected",
-                "name":  "If connected to nightscout server",
-                "type":  "boolean",
-                "read":  true,
+                "role": "indicator.connected",
+                "name": "If connected to nightscout server",
+                "type": "boolean",
+                "read": true,
                 "write": false,
-                "def":   false
+                "def": false
             },
             "native": {}
         },
         {
-            "_id":  "trigger",
+            "_id": "trigger",
             "type": "channel",
             "common": {
                 "name": "Information"
@@ -218,15 +235,15 @@
             "native": {}
         },
         {
-            "_id":  "trigger.picture",
+            "_id": "trigger.picture",
             "type": "state",
             "common": {
-                "role":  "button",
-                "name":  "Create picture with phantomJS",
-                "type":  "boolean",
-                "read":  true,
+                "role": "button",
+                "name": "Create picture with phantomJS",
+                "type": "boolean",
+                "read": true,
                 "write": false,
-                "def":   false
+                "def": false
             },
             "native": {}
         },

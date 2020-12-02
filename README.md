@@ -145,7 +145,7 @@ sendTo('nightscout.0', 'chart', {
 -->
 
 ## Changelog
-### __WORK IN PROGRESS__
+### 0.11.4 (2020-12-02)
 * (bluefox) corrected the notification timestamp
 
 ### 0.11.2 (2020-04-04)

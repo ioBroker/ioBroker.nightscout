@@ -1,15 +1,12 @@
 'use strict';
 
-/*
- * Created with @iobroker/create-adapter v1.16.0
- */
-
-const utils = require('@iobroker/adapter-core');
-const adapterName = (require('./package.json').name.split('.').pop() || '').toString();
-const Nightscout = require('./lib/nightscout');
-const request = require('request');
-const crypto = require('crypto');
+const utils            = require('@iobroker/adapter-core');
+const adapterName      = (require('./package.json').name.split('.').pop() || '').toString();
+const Nightscout       = require('./lib/nightscout');
+const request          = require('request');
+const crypto           = require('crypto');
 const NightscoutClient = require('./lib/client');
+
 let getImage;
 
 /**
@@ -24,8 +21,8 @@ let client;
 function readRoles() {
     return new Promise(resolve => {
         const query = {
-            url: URL + '/api/v2/authorization/subjects',
-            method: 'GET',
+            url:     URL + '/api/v2/authorization/subjects',
+            method:  'GET',
             headers: {'api-secret': secret}
         };
         request(query, (error, status, body) => {
@@ -185,6 +182,7 @@ function startAdapter(options) {
                         try {
                             obj.message.body = JSON.parse(obj.message.body);
                         } catch (e) {
+                            // ignore error and try to treat it as string
                         }
                     }
 
@@ -224,12 +222,12 @@ function startAdapter(options) {
                     const now = Date.now();
 
                     const defaults = {
-                        start: now - 3 * 3600000,
-                        end: now,
-                        width: 720,
+                        start:  now - 3 * 3600000,
+                        end:    now,
+                        width:  720,
                         height: 480,
                         format: 'png',
-                        lang: adapter.config.language
+                        lang:   adapter.config.language
                     };
 
                     try {
@@ -275,11 +273,12 @@ function start() {
         if (!adapter.config.language) {
             adapter.getForeignObject('system.config', (err, obj) => {
                 adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
-                Nightscout.startServer(adapter).then(() =>
-                    setTimeout(() => {
-                        client = new NightscoutClient(adapter, URL, secret);
-                        client.on('connection', connected => adapter.setState('info.connection', connected, true));
-                    }, 1000));
+                Nightscout.startServer(adapter)
+                    .then(() =>
+                        setTimeout(() => {
+                            client = new NightscoutClient(adapter, URL, secret);
+                            client.on('connection', connected => adapter.setState('info.connection', connected, true));
+                        }, 1000));
             });
         } else {
             Nightscout.startServer(adapter).then(() =>
@@ -292,7 +291,6 @@ function start() {
         client = new NightscoutClient(adapter, URL, secret);
         client.on('connection', connected => adapter.setState('info.connection', connected, true));
     }
-
 }
 
 function main() {

@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nightscout",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "description": "Provides nightscout server and client for sugar monitoring",
   "author": {
     "name": "bluefox",

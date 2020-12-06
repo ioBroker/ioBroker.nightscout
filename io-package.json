@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.11.4",
+        "version": "0.11.5",
         "news": {
+            "0.11.5": {
+                "en": "corrected the notification timestamp",
+                "de": "Der Benachrichtigungszeitstempel wurde korrigiert",
+                "ru": "исправлена отметка времени уведомления",
+                "pt": "corrigiu o carimbo de data / hora da notificação",
+                "nl": "het tijdstempel van de melding gecorrigeerd",
+                "fr": "correction de l'horodatage de la notification",
+                "it": "corretto il timestamp della notifica",
+                "es": "se corrigió la marca de tiempo de la notificación",
+                "pl": "poprawiono sygnaturę czasową powiadomienia",
+                "zh-cn": "更正了通知时间戳"
+            },
             "0.11.4": {
                 "en": "corrected the notification timestamp",
                 "de": "Der Benachrichtigungszeitstempel wurde korrigiert",

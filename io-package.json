@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.11.5",
+        "version": "0.11.6",
         "news": {
+            "0.11.6": {
+                "en": "fixing crash on (urgent) alarm received from nightscout",
+                "de": "Behebung eines Absturzes bei (dringendem) Alarm, der vom Nachtscout empfangen wurde",
+                "ru": "исправление сбоя при (срочном) тревоге, полученной от nightcout",
+                "pt": "consertando falha no alarme (urgente) recebido de nightcout",
+                "nl": "crash repareren bij (urgent) alarm ontvangen van nightscout",
+                "fr": "correction d'un crash sur l'alarme (urgente) reçue de nightcout",
+                "it": "risoluzione di crash su allarme (urgente) ricevuto da nightscout",
+                "es": "arreglando el bloqueo de la alarma (urgente) recibida de nightcout",
+                "pl": "naprawianie awarii (pilnego) alarmu otrzymanego z nightcout",
+                "zh-cn": "解决了从Nightscout收到的（紧急）警报崩溃的问题"
+            },
             "0.11.5": {
                 "en": "corrected the notification timestamp",
                 "de": "Der Benachrichtigungszeitstempel wurde korrigiert",

@@ -4,7 +4,16 @@
         "version": "0.11.7",
         "news": {
             "0.11.7": {
-                "en": "add resetting alarm & urgent alarm"
+                "en": "add resetting alarm & urgent alarm",
+                "de": "Reset-Alarm und Dringlichkeitsalarm hinzufügen",
+                "ru": "добавить сбрасывающую тревогу и срочную тревогу",
+                "pt": "adicionar redefinição de alarme e alarme urgente",
+                "nl": "voeg resettenalarm en urgent alarm toe",
+                "fr": "ajouter une alarme de réinitialisation et une alarme urgente",
+                "it": "aggiungere il ripristino dell'allarme e dell'allarme urgente",
+                "es": "agregar alarma de reinicio y alarma urgente",
+                "pl": "dodaj alarm resetujący i pilny alarm",
+                "zh-cn": "添加重置警报和紧急警报"
             },
             "0.11.6": {
                 "en": "fixing crash on (urgent) alarm received from nightscout",

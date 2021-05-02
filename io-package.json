@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.11.6",
+        "version": "0.11.7",
         "news": {
+            "0.11.7": {
+                "en": "add resetting alarm & urgent alarm"
+            },
             "0.11.6": {
                 "en": "fixing crash on (urgent) alarm received from nightscout",
                 "de": "Behebung eines Absturzes bei (dringendem) Alarm, der vom Nachtscout empfangen wurde",

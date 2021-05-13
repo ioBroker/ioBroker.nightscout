@@ -145,6 +145,9 @@ sendTo('nightscout.0', 'chart', {
 -->
 
 ## Changelog
+### 0.11.7 (2021-05-13)
+* (volkerrichert) Added the resetting of alarm and urgent alarm
+
 ### 0.11.5 (2020-12-06)
 * (bluefox) corrected the notification timestamp
 

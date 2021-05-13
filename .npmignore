@@ -1,27 +1,17 @@
-.git
-.idea
-node_modules/
-nbproject/
-.vs*/
-Thumbs.db
+/**/*
+/gulpfile.js
 gulpfile.js
-
-test/
-travis/
-.travis.yml
-appveyor.yml
-.travis.yaml
-appveyor.yaml
-
-.eslintrc.json
-.eslintrc.js
-
-# npm package files
-iobroker.*.tgz
-package-lock.json
-
-# i18n intermediate files
-admin/i18n
-
-# maintenance scripts
-maintenance/**
+!/admin/**/*
+!/admin/*
+!/lib/**/*
+!/lib/*
+!/img/*
+!/img/**/*
+!/install/*
+!/install/**/*
+!/io-package.json
+!/package.json
+!/LICENSE
+!/main.js
+!/inspect.js
+!/README.md

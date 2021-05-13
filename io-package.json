@@ -1,8 +1,32 @@
 {
     "common": {
         "name": "nightscout",
-        "version": "0.11.5",
+        "version": "0.11.7",
         "news": {
+            "0.11.7": {
+                "en": "add resetting alarm & urgent alarm",
+                "de": "Reset-Alarm und Dringlichkeitsalarm hinzufügen",
+                "ru": "добавить сбрасывающую тревогу и срочную тревогу",
+                "pt": "adicionar redefinição de alarme e alarme urgente",
+                "nl": "voeg resettenalarm en urgent alarm toe",
+                "fr": "ajouter une alarme de réinitialisation et une alarme urgente",
+                "it": "aggiungere il ripristino dell'allarme e dell'allarme urgente",
+                "es": "agregar alarma de reinicio y alarma urgente",
+                "pl": "dodaj alarm resetujący i pilny alarm",
+                "zh-cn": "添加重置警报和紧急警报"
+            },
+            "0.11.6": {
+                "en": "fixing crash on (urgent) alarm received from nightscout",
+                "de": "Behebung eines Absturzes bei (dringendem) Alarm, der vom Nachtscout empfangen wurde",
+                "ru": "исправление сбоя при (срочном) тревоге, полученной от nightcout",
+                "pt": "consertando falha no alarme (urgente) recebido de nightcout",
+                "nl": "crash repareren bij (urgent) alarm ontvangen van nightscout",
+                "fr": "correction d'un crash sur l'alarme (urgente) reçue de nightcout",
+                "it": "risoluzione di crash su allarme (urgente) ricevuto da nightscout",
+                "es": "arreglando el bloqueo de la alarma (urgente) recibida de nightcout",
+                "pl": "naprawianie awarii (pilnego) alarmu otrzymanego z nightcout",
+                "zh-cn": "解决了从Nightscout收到的（紧急）警报崩溃的问题"
+            },
             "0.11.5": {
                 "en": "corrected the notification timestamp",
                 "de": "Der Benachrichtigungszeitstempel wurde korrigiert",

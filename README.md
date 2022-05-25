@@ -145,7 +145,7 @@ sendTo('nightscout.0', 'chart', {
 -->
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.0.0 (2022-05-25)
 * (bluefox) BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings
 * (bluefox) BREAKING CHANGE: Own nightscout server updated to v14.x
 
@@ -178,7 +178,7 @@ sendTo('nightscout.0', 'chart', {
 * (Volker Richert) Fixed last Updated value
 
 ### 0.9.6 (2019-09-14)
-* (bluefox) used newer version of nightscout 
+* (bluefox) used newer version of nightscout
 
 ### 0.9.4 (2019-08-10)
 * (bluefox) initial release

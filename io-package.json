@@ -1,703 +1,631 @@
 {
-    "common": {
-        "name": "nightscout",
-        "version": "0.11.7",
-        "news": {
-            "0.11.7": {
-                "en": "add resetting alarm & urgent alarm",
-                "de": "Reset-Alarm und Dringlichkeitsalarm hinzufügen",
-                "ru": "добавить сбрасывающую тревогу и срочную тревогу",
-                "pt": "adicionar redefinição de alarme e alarme urgente",
-                "nl": "voeg resettenalarm en urgent alarm toe",
-                "fr": "ajouter une alarme de réinitialisation et une alarme urgente",
-                "it": "aggiungere il ripristino dell'allarme e dell'allarme urgente",
-                "es": "agregar alarma de reinicio y alarma urgente",
-                "pl": "dodaj alarm resetujący i pilny alarm",
-                "zh-cn": "添加重置警报和紧急警报"
-            },
-            "0.11.6": {
-                "en": "fixing crash on (urgent) alarm received from nightscout",
-                "de": "Behebung eines Absturzes bei (dringendem) Alarm, der vom Nachtscout empfangen wurde",
-                "ru": "исправление сбоя при (срочном) тревоге, полученной от nightcout",
-                "pt": "consertando falha no alarme (urgente) recebido de nightcout",
-                "nl": "crash repareren bij (urgent) alarm ontvangen van nightscout",
-                "fr": "correction d'un crash sur l'alarme (urgente) reçue de nightcout",
-                "it": "risoluzione di crash su allarme (urgente) ricevuto da nightscout",
-                "es": "arreglando el bloqueo de la alarma (urgente) recibida de nightcout",
-                "pl": "naprawianie awarii (pilnego) alarmu otrzymanego z nightcout",
-                "zh-cn": "解决了从Nightscout收到的（紧急）警报崩溃的问题"
-            },
-            "0.11.5": {
-                "en": "corrected the notification timestamp",
-                "de": "Der Benachrichtigungszeitstempel wurde korrigiert",
-                "ru": "исправлена отметка времени уведомления",
-                "pt": "corrigiu o carimbo de data / hora da notificação",
-                "nl": "het tijdstempel van de melding gecorrigeerd",
-                "fr": "correction de l'horodatage de la notification",
-                "it": "corretto il timestamp della notifica",
-                "es": "se corrigió la marca de tiempo de la notificación",
-                "pl": "poprawiono sygnaturę czasową powiadomienia",
-                "zh-cn": "更正了通知时间戳"
-            },
-            "0.11.4": {
-                "en": "corrected the notification timestamp",
-                "de": "Der Benachrichtigungszeitstempel wurde korrigiert",
-                "ru": "исправлена отметка времени уведомления",
-                "pt": "corrigiu o carimbo de data / hora da notificação",
-                "nl": "het tijdstempel van de melding gecorrigeerd",
-                "fr": "correction de l'horodatage de la notification",
-                "it": "corretto il timestamp della notifica",
-                "es": "se corrigió la marca de tiempo de la notificación",
-                "pl": "poprawiono sygnaturę czasową powiadomienia",
-                "zh-cn": "更正了通知时间戳"
-            },
-            "0.11.3": {
-                "en": "cage & sage will be updated based on current data if not treatments available",
-                "de": "Käfig & Salbei werden basierend auf den aktuellen Daten aktualisiert, wenn keine Behandlungen verfügbar sind",
-                "ru": "Клетка и шалфей будут обновлены на основе текущих данных, если не доступны методы лечения",
-                "pt": "gaiola e sálvia serão atualizados com base nos dados atuais, se não houver tratamentos disponíveis",
-                "nl": "kooi & salie zal worden bijgewerkt op basis van de huidige gegevens als er geen behandelingen beschikbaar zijn",
-                "fr": "la cage et la sauge seront mises à jour sur la base des données actuelles si aucun traitement n'est disponible",
-                "it": "gabbia e salvia saranno aggiornate in base ai dati attuali se non sono disponibili trattamenti",
-                "es": "la jaula y la salvia se actualizarán según los datos actuales si no hay tratamientos disponibles",
-                "pl": "klatka i szałwia zostaną zaktualizowane na podstawie bieżących danych, jeśli nie będą dostępne zabiegi",
-                "zh-cn": "如果没有可用的治疗方法，笼子和鼠尾草将根据当前数据进行更新"
-            },
-            "0.11.2": {
-                "en": "Added the possibility of the getting the chart of sugar",
-                "de": "Es wurde die Möglichkeit hinzugefügt, die Zuckerkarte zu erhalten",
-                "ru": "Добавлена возможность получения графика сахара",
-                "pt": "Adicionada a possibilidade de obter o gráfico de açúcar",
-                "nl": "De mogelijkheid toegevoegd om de kaart met suiker te krijgen",
-                "fr": "Ajout de la possibilité d'obtenir la carte du sucre",
-                "it": "Aggiunta la possibilità di ottenere il grafico dello zucchero",
-                "es": "Se agregó la posibilidad de obtener el gráfico de azúcar",
-                "pl": "Dodano możliwość uzyskania wykresu cukru",
-                "zh-cn": "添加了获取糖图的可能性"
-            },
-            "0.10.4": {
-                "en": "Allowed node.js 12",
-                "de": "Zulässigt node.js 12",
-                "ru": "Разрешен node.js 12",
-                "pt": "Nó permitido.js 12",
-                "nl": "Toegestane node.js 12",
-                "fr": "Node.js 12 autorisé",
-                "it": "Nodo autorizzato.js 12",
-                "es": "Nodo permitido.js 12",
-                "pl": "Dozwolony node.js 12",
-                "zh-cn": "允许的node.js 12"
-            },
-            "0.10.2": {
-                "en": "change unit of reservoir level",
-                "de": "Einheit des Vorratsbehälters ändern",
-                "ru": "изменить единицу уровня резервуара",
-                "pt": "alterar unidade do nível do reservatório",
-                "nl": "verander eenheid van reservoirniveau",
-                "fr": "changer l'unité du niveau du réservoir",
-                "it": "cambia unità di livello del serbatoio",
-                "es": "cambiar la unidad del nivel del depósito",
-                "pl": "zmienić jednostkę poziomu w zbiorniku",
-                "zh-cn": "储层水位变化单位"
-            },
-            "0.10.1": {
-                "en": "small bugfix",
-                "de": "kleiner Bugfix",
-                "ru": "небольшое исправление",
-                "pt": "pequeno bugfix",
-                "nl": "kleine bugfix",
-                "fr": "petit bugfix",
-                "it": "piccolo bugfix",
-                "es": "pequeña corrección de errores",
-                "pl": "mała poprawka",
-                "zh-cn": "小错误修正"
-            },
-            "0.10.0": {
-                "en": " Add the possibility to use an external nightscout server again and add the cage & sage ",
-                "de": " Fügen Sie die Möglichkeit hinzu, einen externen Nightcout-Server erneut zu verwenden, und fügen Sie den Käfig und den Salbei hinzu",
-                "ru": " Добавьте возможность снова использовать внешний сервер nightcout и добавьте cage & sage",
-                "pt": " Adicione a possibilidade de usar um servidor externo noturno novamente e adicione a gaiola e o sábio",
-                "nl": " Voeg de mogelijkheid toe om opnieuw een externe nachtcoutserver te gebruiken en voeg de kooi & salie toe",
-                "fr": " Ajouter la possibilité d'utiliser à nouveau un serveur de nightcout externe et d'ajouter la cage et la sauge",
-                "it": " Aggiungi la possibilità di utilizzare di nuovo un server notturno esterno e aggiungi la gabbia e la salvia",
-                "es": " Agregue la posibilidad de usar un servidor externo de nightcout nuevamente y agregue la jaula y la salvia",
-                "pl": " Dodaj możliwość ponownego użycia zewnętrznego serwera Nightcout i dodaj klatkę i szałwię",
-                "zh-cn": " 添加再次使用外部Nightscout服务器的可能性，并添加笼子和鼠尾草"
-            },
-            "0.9.7": {
-                "en": "Fixed last Updated value",
-                "de": "Letzter aktualisierter Wert behoben",
-                "ru": "Фиксированное последнее обновленное значение",
-                "pt": "Último valor atualizado fixo",
-                "nl": "Vaste laatst bijgewerkte waarde",
-                "fr": "Correction de la dernière valeur mise à jour",
-                "it": "Risolto l'ultimo valore aggiornato",
-                "es": "Se corrigió el último valor actualizado",
-                "pl": "Naprawiono ostatnią zaktualizowaną wartość",
-                "zh-cn": "固定最近更新的值"
-            },
-            "0.9.6": {
-                "en": "Used newer version of nightscout",
-                "de": "Benutzte neuere Version von nightscout",
-                "ru": "Используется более новая версия nightcout",
-                "pt": "Usado versão mais recente do nightscout",
-                "nl": "Nieuwere versie van nightscout gebruikt",
-                "fr": "Utilisé la nouvelle version de nightscout",
-                "it": "Usato versione più recente di nightscout",
-                "es": "Nueva versión usada de nightscout",
-                "pl": "Użyto nowszej wersji nightscout",
-                "zh-cn": "使用较新版本的nightscout"
-            },
-            "0.9.4": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
-            }
+  "common": {
+    "name": "nightscout",
+    "version": "1.0.0",
+    "news": {
+      "1.0.0": {
+        "en": "BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings\nBREAKING CHANGE: Own nightscout server updated to v14.x",
+        "de": "BREAKING CHANGE: Diese Version unterstützt nur Nightscout 14.x. Sie müssen Ihr API-Geheimnis in den Einstellungen eingeben\nBREAKING CHANGE: Eigener Nightscout-Server auf v14.x aktualisiert",
+        "ru": "ГЛАВНОЕ ИЗМЕНЕНИЕ: Эта версия поддерживает только nightscout 14.x. Вы должны ввести свой секрет API в настройках\nГЛАВНОЕ ИЗМЕНЕНИЕ: собственный сервер nightscout обновлен до версии 14.x.",
+        "pt": "BREAKING CHANGE: Esta versão suporta apenas nightcout 14.x. Você deve inserir seu segredo de API nas configurações\nÚLTIMA MUDANÇA: Servidor noturno próprio atualizado para v14.x",
+        "nl": "BAANBREKENDE VERANDERING: Deze versie ondersteunt alleen nightscout 14.x. U moet uw API-geheim invoeren in instellingen\nBREKENDE WIJZIGING: Eigen nightscout-server geüpdatet naar v14.x",
+        "fr": "BREAKING CHANGE : Cette version ne prend en charge que Nightscout 14.x. Vous devez entrer votre secret API dans les paramètres\nCHANGEMENT RUPTURE : Propre serveur nightscout mis à jour vers v14.x",
+        "it": "MODIFICA DI ROTTURA: questa versione supporta solo nightscout 14.x. Devi inserire il tuo segreto API nelle impostazioni\nCAMBIAMENTO ROTANTE: il proprio server nightscout aggiornato alla v14.x",
+        "es": "CAMBIO IMPORTANTE: esta versión solo es compatible con nightscout 14.x. Debe ingresar su API secreta en la configuración\nCAMBIO IMPORTANTE: servidor nightscout propio actualizado a v14.x",
+        "pl": "PRZEŁOMOWA ZMIANA: Ta wersja obsługuje tylko nightscout 14.x. Musisz wpisać swój sekret API w ustawieniach\nKŁOPOCZNA ZMIANA: Własny serwer Nightscout zaktualizowany do wersji 14.x",
+        "zh-cn": "重大变化：此版本仅支持 nightscout 14.x。您必须在设置中输入您的 API 密码\n重大变化：自己的 nightscout 服务器更新到 v14.x"
+      },
+      "0.11.7": {
+        "en": "add resetting alarm & urgent alarm",
+        "de": "Reset-Alarm und Dringlichkeitsalarm hinzufügen",
+        "ru": "добавить сбрасывающую тревогу и срочную тревогу",
+        "pt": "adicionar redefinição de alarme e alarme urgente",
+        "nl": "voeg resettenalarm en urgent alarm toe",
+        "fr": "ajouter une alarme de réinitialisation et une alarme urgente",
+        "it": "aggiungere il ripristino dell'allarme e dell'allarme urgente",
+        "es": "agregar alarma de reinicio y alarma urgente",
+        "pl": "dodaj alarm resetujący i pilny alarm",
+        "zh-cn": "添加重置警报和紧急警报"
+      },
+      "0.11.6": {
+        "en": "fixing crash on (urgent) alarm received from nightscout",
+        "de": "Behebung eines Absturzes bei (dringendem) Alarm, der vom Nachtscout empfangen wurde",
+        "ru": "исправление сбоя при (срочном) тревоге, полученной от nightcout",
+        "pt": "consertando falha no alarme (urgente) recebido de nightcout",
+        "nl": "crash repareren bij (urgent) alarm ontvangen van nightscout",
+        "fr": "correction d'un crash sur l'alarme (urgente) reçue de nightcout",
+        "it": "risoluzione di crash su allarme (urgente) ricevuto da nightscout",
+        "es": "arreglando el bloqueo de la alarma (urgente) recibida de nightcout",
+        "pl": "naprawianie awarii (pilnego) alarmu otrzymanego z nightcout",
+        "zh-cn": "解决了从Nightscout收到的（紧急）警报崩溃的问题"
+      },
+      "0.11.5": {
+        "en": "corrected the notification timestamp",
+        "de": "Der Benachrichtigungszeitstempel wurde korrigiert",
+        "ru": "исправлена отметка времени уведомления",
+        "pt": "corrigiu o carimbo de data / hora da notificação",
+        "nl": "het tijdstempel van de melding gecorrigeerd",
+        "fr": "correction de l'horodatage de la notification",
+        "it": "corretto il timestamp della notifica",
+        "es": "se corrigió la marca de tiempo de la notificación",
+        "pl": "poprawiono sygnaturę czasową powiadomienia",
+        "zh-cn": "更正了通知时间戳"
+      },
+      "0.11.4": {
+        "en": "corrected the notification timestamp",
+        "de": "Der Benachrichtigungszeitstempel wurde korrigiert",
+        "ru": "исправлена отметка времени уведомления",
+        "pt": "corrigiu o carimbo de data / hora da notificação",
+        "nl": "het tijdstempel van de melding gecorrigeerd",
+        "fr": "correction de l'horodatage de la notification",
+        "it": "corretto il timestamp della notifica",
+        "es": "se corrigió la marca de tiempo de la notificación",
+        "pl": "poprawiono sygnaturę czasową powiadomienia",
+        "zh-cn": "更正了通知时间戳"
+      },
+      "0.11.3": {
+        "en": "cage & sage will be updated based on current data if not treatments available",
+        "de": "Käfig & Salbei werden basierend auf den aktuellen Daten aktualisiert, wenn keine Behandlungen verfügbar sind",
+        "ru": "Клетка и шалфей будут обновлены на основе текущих данных, если не доступны методы лечения",
+        "pt": "gaiola e sálvia serão atualizados com base nos dados atuais, se não houver tratamentos disponíveis",
+        "nl": "kooi & salie zal worden bijgewerkt op basis van de huidige gegevens als er geen behandelingen beschikbaar zijn",
+        "fr": "la cage et la sauge seront mises à jour sur la base des données actuelles si aucun traitement n'est disponible",
+        "it": "gabbia e salvia saranno aggiornate in base ai dati attuali se non sono disponibili trattamenti",
+        "es": "la jaula y la salvia se actualizarán según los datos actuales si no hay tratamientos disponibles",
+        "pl": "klatka i szałwia zostaną zaktualizowane na podstawie bieżących danych, jeśli nie będą dostępne zabiegi",
+        "zh-cn": "如果没有可用的治疗方法，笼子和鼠尾草将根据当前数据进行更新"
+      },
+      "0.11.2": {
+        "en": "Added the possibility of the getting the chart of sugar",
+        "de": "Es wurde die Möglichkeit hinzugefügt, die Zuckerkarte zu erhalten",
+        "ru": "Добавлена возможность получения графика сахара",
+        "pt": "Adicionada a possibilidade de obter o gráfico de açúcar",
+        "nl": "De mogelijkheid toegevoegd om de kaart met suiker te krijgen",
+        "fr": "Ajout de la possibilité d'obtenir la carte du sucre",
+        "it": "Aggiunta la possibilità di ottenere il grafico dello zucchero",
+        "es": "Se agregó la posibilidad de obtener el gráfico de azúcar",
+        "pl": "Dodano możliwość uzyskania wykresu cukru",
+        "zh-cn": "添加了获取糖图的可能性"
+      }
+    },
+    "title": "Nightscout server",
+    "titleLang": {
+      "en": "Nightscout server",
+      "de": "Nightscout-Server",
+      "ru": "Nightscout сервер",
+      "pt": "Servidor Nightscout",
+      "nl": "Nightscout-server",
+      "fr": "Serveur Nightscout",
+      "it": "Server Nightscout",
+      "es": "Servidor nocturno",
+      "pl": "Serwer Nightscout",
+      "zh-cn": "Nightscout服务器"
+    },
+    "desc": {
+      "en": "Provides nightscout server for sugar monitoring",
+      "de": "Bietet einen Nightscout-server für die Zuckerüberwachung",
+      "ru": "Предоставляет сервер nightscout для мониторинга сахара в крови",
+      "pt": "Fornece servidor nightscout para monitoramento de açúcar",
+      "nl": "Biedt nachtcoutserver voor suikercontrole",
+      "fr": "Fournit un serveur nightscout pour la surveillance du sucre",
+      "it": "Fornisce il server nightscout per il monitoraggio dello zucchero",
+      "es": "Proporciona un servidor nightcout para monitoreo de azúcar.",
+      "pl": "Zapewnia serwer nocny do monitorowania cukru",
+      "zh-cn": "为糖监测提供nightscout服务器"
+    },
+    "authors": [
+      "bluefox <dogafox@gmail.com>"
+    ],
+    "keywords": [
+      "sugar monitoring",
+      "nightscout",
+      "we are not waiting"
+    ],
+    "license": "AGPL-3.0",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "messagebox": true,
+    "icon": "nightscout.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.nightscout/master/admin/nightscout.png",
+    "readme": "https://github.com/ioBroker/ioBroker.nightscout/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "utility",
+    "compact": true,
+    "localLink": "%protocol%://%ip%:%port%/",
+    "materialize": true,
+    "messages": [
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<1.0.0",
+            "newVersion>=1.0.0"
+          ]
         },
-        "title": "Nightscout server",
-        "titleLang": {
-            "en": "Nightscout server",
-            "de": "Nightscout-Server",
-            "ru": "Nightscout сервер",
-            "pt": "Servidor Nightscout",
-            "nl": "Nightscout-server",
-            "fr": "Serveur Nightscout",
-            "it": "Server Nightscout",
-            "es": "Servidor nocturno",
-            "pl": "Serwer Nightscout",
-            "zh-cn": "Nightscout服务器"
+        "title": {
+          "en": "Important notice!",
+          "de": "Wichtiger Hinweis!",
+          "ru": "Важное замечание!",
+          "pt": "Notícia importante!",
+          "nl": "Belangrijke mededeling!",
+          "fr": "Avis important!",
+          "it": "Avviso IMPORTANTE!",
+          "es": "Noticia importante!",
+          "pl": "Ważna uwaga!",
+          "zh-cn": "重要通知!"
         },
-        "desc": {
-            "en": "Provides nightscout server for sugar monitoring",
-            "de": "Bietet einen Nightscout-server für die Zuckerüberwachung",
-            "ru": "Предоставляет сервер nightscout для мониторинга сахара в крови",
-            "pt": "Fornece servidor nightscout para monitoramento de açúcar",
-            "nl": "Biedt nachtcoutserver voor suikercontrole",
-            "fr": "Fournit un serveur nightscout pour la surveillance du sucre",
-            "it": "Fornisce il server nightscout per il monitoraggio dello zucchero",
-            "es": "Proporciona un servidor nightcout para monitoreo de azúcar.",
-            "pl": "Zapewnia serwer nocny do monitorowania cukru",
-            "zh-cn": "为糖监测提供nightscout服务器"
+        "text": {
+          "en": "\"Nightscout\" was updated to version 14. If you used external \"Nightscout\" server you must enter your API key again",
+          "de": "\"Nightscout\" wurde auf Version 14 aktualisiert. Wenn Sie einen externen \"Nightscout\"-Server verwendet haben, müssen Sie Ihren API-Schlüssel erneut eingeben",
+          "ru": "«Nightscout» обновлен до версии 14. Если вы использовали внешний сервер «Nightscout», вам необходимо повторно ввести свой API-ключ.",
+          "pt": "\"Nightscout\" foi atualizado para a versão 14. Se você usou o servidor \"Nightscout\" externo, você deve inserir sua chave de API novamente",
+          "nl": "\"Nightscout\" is bijgewerkt naar versie 14. Als u een externe \"Nightscout\"-server heeft gebruikt, moet u uw API-sleutel opnieuw invoeren",
+          "fr": "\"Nightscout\" a été mis à jour vers la version 14. Si vous avez utilisé un serveur externe \"Nightscout\", vous devez saisir à nouveau votre clé API",
+          "it": "\"Nightscout\" è stato aggiornato alla versione 14. Se hai utilizzato un server \"Nightscout\" esterno devi inserire nuovamente la tua chiave API",
+          "es": "\"Nightscout\" se actualizó a la versión 14. Si usó un servidor externo \"Nightscout\", debe ingresar su clave API nuevamente",
+          "pl": "\"Nightscout\" został zaktualizowany do wersji 14. Jeśli korzystałeś z zewnętrznego serwera \"Nightscout\" musisz ponownie wprowadzić swój klucz API",
+          "zh-cn": "“Nightscout”已更新至版本 14。如果您使用外部“Nightscout”服务器，您必须再次输入您的 API 密钥"
         },
-        "authors": [
-            "bluefox <dogafox@gmail.com>"
-        ],
-        "keywords": [
-            "sugar monitoring",
-            "nightscout",
-            "we are not waiting"
-        ],
-        "license": "AGPL-3.0",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "messagebox": true,
-        "icon": "nightscout.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.nightscout/master/admin/nightscout.png",
-        "readme": "https://github.com/ioBroker/ioBroker.nightscout/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "utility",
-        "compact": true,
-        "localLink": "%protocol%://%ip%:%port%/",
-        "materialize": true,
-        "messages": [
-            {
-                "condition": {
-                    "operand": "and",
-                    "rules": [
-                        "oldVersion<1.0.0",
-                        "newVersion>=1.0.0"
-                    ]
-                },
-                "title": {
-                    "en": "Important notice!",
-                    "de": "Wichtiger Hinweis!",
-                    "ru": "Важное замечание!",
-                    "pt": "Notícia importante!",
-                    "nl": "Belangrijke mededeling!",
-                    "fr": "Avis important!",
-                    "it": "Avviso IMPORTANTE!",
-                    "es": "Noticia importante!",
-                    "pl": "Ważna uwaga!",
-                    "zh-cn": "重要通知!"
-                },
-                "text": {
-                    "en": "\"Nightscout\" was updated to version 14. If you used external \"Nightscout\" server you must enter your API key again",
-                    "de": "\"Nightscout\" wurde auf Version 14 aktualisiert. Wenn Sie einen externen \"Nightscout\"-Server verwendet haben, müssen Sie Ihren API-Schlüssel erneut eingeben",
-                    "ru": "«Nightscout» обновлен до версии 14. Если вы использовали внешний сервер «Nightscout», вам необходимо повторно ввести свой API-ключ.",
-                    "pt": "\"Nightscout\" foi atualizado para a versão 14. Se você usou o servidor \"Nightscout\" externo, você deve inserir sua chave de API novamente",
-                    "nl": "\"Nightscout\" is bijgewerkt naar versie 14. Als u een externe \"Nightscout\"-server heeft gebruikt, moet u uw API-sleutel opnieuw invoeren",
-                    "fr": "\"Nightscout\" a été mis à jour vers la version 14. Si vous avez utilisé un serveur externe \"Nightscout\", vous devez saisir à nouveau votre clé API",
-                    "it": "\"Nightscout\" è stato aggiornato alla versione 14. Se hai utilizzato un server \"Nightscout\" esterno devi inserire nuovamente la tua chiave API",
-                    "es": "\"Nightscout\" se actualizó a la versión 14. Si usó un servidor externo \"Nightscout\", debe ingresar su clave API nuevamente",
-                    "pl": "\"Nightscout\" został zaktualizowany do wersji 14. Jeśli korzystałeś z zewnętrznego serwera \"Nightscout\" musisz ponownie wprowadzić swój klucz API",
-                    "zh-cn": "“Nightscout”已更新至版本 14。如果您使用外部“Nightscout”服务器，您必须再次输入您的 API 密钥"
-                },
-                "level": "warn",
-                "linkText": {
-                    "en": "Readme",
-                    "de": "Liesmich",
-                    "ru": "Прочти меня",
-                    "pt": "Leia-me",
-                    "nl": "Leesmij",
-                    "fr": "Lisez-moi",
-                    "it": "Leggimi",
-                    "es": "Léame",
-                    "pl": "Readme",
-                    "zh-cn": "自述文件"
-                },
-                "buttons": [
-                    "agree",
-                    "cancel"
-                ]
-            }
+        "level": "warn",
+        "linkText": {
+          "en": "Readme",
+          "de": "Liesmich",
+          "ru": "Прочти меня",
+          "pt": "Leia-me",
+          "nl": "Leesmij",
+          "fr": "Lisez-moi",
+          "it": "Leggimi",
+          "es": "Léame",
+          "pl": "Readme",
+          "zh-cn": "自述文件"
+        },
+        "buttons": [
+          "agree",
+          "cancel"
         ]
-    },
-    "native": {
-        "local": true,
-        "secure": false,
-        "port": 1337,
-        "bind": "127.0.0.1",
-        "url": "https://localhost:1337",
-        "mongo": "mongodb://localhost:27017/nightscout",
-        "enabled": "careportal basal",
-        "units": "mg/dl",
-        "secret": "12345678901234",
-        "remoteSecret": "",
-        "timeFormat": 24,
-        "language": "",
-        "allowUnauthorized": false,
-        "pumpFields": "reservoir battery",
-        "envs": [
-            {
-                "name": "ENV_VARIABLE_EXAMPLE",
-                "value": "value"
-            }
-        ],
-        "certPublic": "",
-        "certPrivate": "",
-        "certChained": "",
-        "licenseAccepted": false,
-        "osDependencies": {
-            "linux": [
-                "mongodb"
-            ]
-        },
-        "leEnabled": false
-    },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "If connected to nightscout server",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "trigger",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "trigger.picture",
-            "type": "state",
-            "common": {
-                "role": "button",
-                "name": "Create picture with phantomJS",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "data",
-            "type": "channel",
-            "common": {
-                "name": "data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.device",
-            "type": "state",
-            "common": {
-                "name": "Device description",
-                "role": "state",
-                "type": "string",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.pumpBattery",
-            "type": "state",
-            "common": {
-                "name": "Pump battery",
-                "role": "value.battery",
-                "unit": "%",
-                "min": 0,
-                "max": 100,
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.clock",
-            "type": "state",
-            "common": {
-                "name": "Pump time",
-                "role": "value.time",
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.bolusiob",
-            "type": "state",
-            "common": {
-                "name": "Bolus IOB",
-                "role": "value",
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.reservoir",
-            "type": "state",
-            "common": {
-                "name": "Reservoir level",
-                "role": "value.fill",
-                "type": "number",
-                "unit": "U",
-                "min": 0,
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.bolusing",
-            "type": "state",
-            "common": {
-                "name": "Bolusing",
-                "role": "indicator",
-                "type": "boolean",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.status",
-            "type": "state",
-            "common": {
-                "name": "Status",
-                "role": "state",
-                "type": "string",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.suspended",
-            "type": "state",
-            "common": {
-                "name": "Suspended",
-                "role": "indicator",
-                "type": "boolean",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.uploaderBattery",
-            "type": "state",
-            "common": {
-                "name": "Uploader battery",
-                "role": "value.battery",
-                "unit": "%",
-                "min": 0,
-                "max": 100,
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.mgdl",
-            "type": "state",
-            "common": {
-                "name": "Sugar value",
-                "role": "value.blood.sugar",
-                "type": "number",
-                "unit": "mgdl",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.mgdlScaled",
-            "type": "state",
-            "common": {
-                "name": "mgdl Scaled",
-                "role": "value",
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.mgdlDirection",
-            "type": "state",
-            "common": {
-                "name": "mgdl Direction",
-                "role": "state",
-                "type": "string",
-                "states": {
-                    "NONE": "⇼",
-                    "TripleUp": "⤊",
-                    "DoubleUp": "⇈",
-                    "SingleUp": "↑",
-                    "FortyFiveUp": "↗",
-                    "Flat": "→",
-                    "FortyFiveDown": "↘",
-                    "SingleDown": "↓",
-                    "DoubleDown": "⇊",
-                    "TripleDown": "⤋",
-                    "NOT COMPUTABLE": "-",
-                    "RATE OUT OF RANGE": "⇕"
-                },
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.lastUpdate",
-            "type": "state",
-            "common": {
-                "name": "Last update",
-                "role": "state",
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.rawUpdate",
-            "type": "state",
-            "common": {
-                "name": "Raw JSON",
-                "role": "state",
-                "type": "json",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.notification",
-            "type": "state",
-            "common": {
-                "name": "Notification",
-                "role": "state",
-                "type": "string",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.urgentAlarm",
-            "type": "state",
-            "common": {
-                "name": "Urgent alarm",
-                "role": "indicator.alarm.health",
-                "type": "boolean",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.alarm",
-            "type": "state",
-            "common": {
-                "name": "Alarm",
-                "role": "indicator.alarm.health",
-                "type": "boolean",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.cage",
-            "type": "channel",
-            "common": {
-                "name": "Cannula age",
-                "role": "value",
-                "type": "number",
-                "unit": "h",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.cage.age",
-            "type": "state",
-            "common": {
-                "name": "Cannula age total hours",
-                "role": "value",
-                "type": "number",
-                "unit": "h",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.cage.days",
-            "type": "state",
-            "common": {
-                "name": "Cannula age days",
-                "role": "value",
-                "type": "number",
-                "unit": "d",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.cage.hours",
-            "type": "state",
-            "common": {
-                "name": "Cannula age hours",
-                "role": "value",
-                "type": "number",
-                "unit": "h",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.cage.changed",
-            "type": "state",
-            "common": {
-                "name": "Cannula changed",
-                "role": "value.time",
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.sage",
-            "type": "channel",
-            "common": {
-                "name": "Sensor age",
-                "role": "value",
-                "type": "number",
-                "unit": "h",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.sage.age",
-            "type": "state",
-            "common": {
-                "name": "Sensor age total hours",
-                "role": "value",
-                "type": "number",
-                "unit": "h",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.sage.days",
-            "type": "state",
-            "common": {
-                "name": "Sensor age days",
-                "role": "value",
-                "type": "number",
-                "unit": "d",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.sage.hours",
-            "type": "state",
-            "common": {
-                "name": "Sensor age hours",
-                "role": "value",
-                "type": "number",
-                "unit": "h",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "data.sage.changed",
-            "type": "state",
-            "common": {
-                "name": "Sensor changed",
-                "role": "value.time",
-                "type": "number",
-                "write": false,
-                "read": true
-            },
-            "native": {}
-        }
+      }
     ]
+  },
+  "native": {
+    "local": true,
+    "secure": false,
+    "port": 1337,
+    "bind": "127.0.0.1",
+    "url": "https://localhost:1337",
+    "mongo": "mongodb://localhost:27017/nightscout",
+    "enabled": "careportal basal",
+    "units": "mg/dl",
+    "secret": "12345678901234",
+    "remoteSecret": "",
+    "timeFormat": 24,
+    "language": "",
+    "allowUnauthorized": false,
+    "pumpFields": "reservoir battery",
+    "envs": [
+      {
+        "name": "ENV_VARIABLE_EXAMPLE",
+        "value": "value"
+      }
+    ],
+    "certPublic": "",
+    "certPrivate": "",
+    "certChained": "",
+    "licenseAccepted": false,
+    "osDependencies": {
+      "linux": [
+        "mongodb"
+      ]
+    },
+    "leEnabled": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "If connected to nightscout server",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "trigger",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "trigger.picture",
+      "type": "state",
+      "common": {
+        "role": "button",
+        "name": "Create picture with phantomJS",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "data",
+      "type": "channel",
+      "common": {
+        "name": "data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.device",
+      "type": "state",
+      "common": {
+        "name": "Device description",
+        "role": "state",
+        "type": "string",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.pumpBattery",
+      "type": "state",
+      "common": {
+        "name": "Pump battery",
+        "role": "value.battery",
+        "unit": "%",
+        "min": 0,
+        "max": 100,
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.clock",
+      "type": "state",
+      "common": {
+        "name": "Pump time",
+        "role": "value.time",
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.bolusiob",
+      "type": "state",
+      "common": {
+        "name": "Bolus IOB",
+        "role": "value",
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.reservoir",
+      "type": "state",
+      "common": {
+        "name": "Reservoir level",
+        "role": "value.fill",
+        "type": "number",
+        "unit": "U",
+        "min": 0,
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.bolusing",
+      "type": "state",
+      "common": {
+        "name": "Bolusing",
+        "role": "indicator",
+        "type": "boolean",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.status",
+      "type": "state",
+      "common": {
+        "name": "Status",
+        "role": "state",
+        "type": "string",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.suspended",
+      "type": "state",
+      "common": {
+        "name": "Suspended",
+        "role": "indicator",
+        "type": "boolean",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.uploaderBattery",
+      "type": "state",
+      "common": {
+        "name": "Uploader battery",
+        "role": "value.battery",
+        "unit": "%",
+        "min": 0,
+        "max": 100,
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.mgdl",
+      "type": "state",
+      "common": {
+        "name": "Sugar value",
+        "role": "value.blood.sugar",
+        "type": "number",
+        "unit": "mgdl",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.mgdlScaled",
+      "type": "state",
+      "common": {
+        "name": "mgdl Scaled",
+        "role": "value",
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.mgdlDirection",
+      "type": "state",
+      "common": {
+        "name": "mgdl Direction",
+        "role": "state",
+        "type": "string",
+        "states": {
+          "NONE": "⇼",
+          "TripleUp": "⤊",
+          "DoubleUp": "⇈",
+          "SingleUp": "↑",
+          "FortyFiveUp": "↗",
+          "Flat": "→",
+          "FortyFiveDown": "↘",
+          "SingleDown": "↓",
+          "DoubleDown": "⇊",
+          "TripleDown": "⤋",
+          "NOT COMPUTABLE": "-",
+          "RATE OUT OF RANGE": "⇕"
+        },
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.lastUpdate",
+      "type": "state",
+      "common": {
+        "name": "Last update",
+        "role": "state",
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.rawUpdate",
+      "type": "state",
+      "common": {
+        "name": "Raw JSON",
+        "role": "state",
+        "type": "json",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.notification",
+      "type": "state",
+      "common": {
+        "name": "Notification",
+        "role": "state",
+        "type": "string",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.urgentAlarm",
+      "type": "state",
+      "common": {
+        "name": "Urgent alarm",
+        "role": "indicator.alarm.health",
+        "type": "boolean",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.alarm",
+      "type": "state",
+      "common": {
+        "name": "Alarm",
+        "role": "indicator.alarm.health",
+        "type": "boolean",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.cage",
+      "type": "channel",
+      "common": {
+        "name": "Cannula age",
+        "role": "value",
+        "type": "number",
+        "unit": "h",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.cage.age",
+      "type": "state",
+      "common": {
+        "name": "Cannula age total hours",
+        "role": "value",
+        "type": "number",
+        "unit": "h",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.cage.days",
+      "type": "state",
+      "common": {
+        "name": "Cannula age days",
+        "role": "value",
+        "type": "number",
+        "unit": "d",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.cage.hours",
+      "type": "state",
+      "common": {
+        "name": "Cannula age hours",
+        "role": "value",
+        "type": "number",
+        "unit": "h",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.cage.changed",
+      "type": "state",
+      "common": {
+        "name": "Cannula changed",
+        "role": "value.time",
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.sage",
+      "type": "channel",
+      "common": {
+        "name": "Sensor age",
+        "role": "value",
+        "type": "number",
+        "unit": "h",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.sage.age",
+      "type": "state",
+      "common": {
+        "name": "Sensor age total hours",
+        "role": "value",
+        "type": "number",
+        "unit": "h",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.sage.days",
+      "type": "state",
+      "common": {
+        "name": "Sensor age days",
+        "role": "value",
+        "type": "number",
+        "unit": "d",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.sage.hours",
+      "type": "state",
+      "common": {
+        "name": "Sensor age hours",
+        "role": "value",
+        "type": "number",
+        "unit": "h",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "data.sage.changed",
+      "type": "state",
+      "common": {
+        "name": "Sensor changed",
+        "role": "value.time",
+        "type": "number",
+        "write": false,
+        "read": true
+      },
+      "native": {}
+    }
+  ]
 }

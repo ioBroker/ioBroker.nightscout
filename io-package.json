@@ -206,7 +206,59 @@
         "type": "utility",
         "compact": true,
         "localLink": "%protocol%://%ip%:%port%/",
-        "materialize": true
+        "materialize": true,
+        "messages": [
+            {
+                "condition": {
+                    "operand": "and",
+                    "rules": [
+                        "oldVersion<1.0.0",
+                        "newVersion>=1.0.0"
+                    ]
+                },
+                "title": {
+                    "en": "Important notice!",
+                    "de": "Wichtiger Hinweis!",
+                    "ru": "Важное замечание!",
+                    "pt": "Notícia importante!",
+                    "nl": "Belangrijke mededeling!",
+                    "fr": "Avis important!",
+                    "it": "Avviso IMPORTANTE!",
+                    "es": "Noticia importante!",
+                    "pl": "Ważna uwaga!",
+                    "zh-cn": "重要通知!"
+                },
+                "text": {
+                    "en": "\"Nightscout\" was updated to version 14. If you used external \"Nightscout\" server you must enter your API key again",
+                    "de": "\"Nightscout\" wurde auf Version 14 aktualisiert. Wenn Sie einen externen \"Nightscout\"-Server verwendet haben, müssen Sie Ihren API-Schlüssel erneut eingeben",
+                    "ru": "«Nightscout» обновлен до версии 14. Если вы использовали внешний сервер «Nightscout», вам необходимо повторно ввести свой API-ключ.",
+                    "pt": "\"Nightscout\" foi atualizado para a versão 14. Se você usou o servidor \"Nightscout\" externo, você deve inserir sua chave de API novamente",
+                    "nl": "\"Nightscout\" is bijgewerkt naar versie 14. Als u een externe \"Nightscout\"-server heeft gebruikt, moet u uw API-sleutel opnieuw invoeren",
+                    "fr": "\"Nightscout\" a été mis à jour vers la version 14. Si vous avez utilisé un serveur externe \"Nightscout\", vous devez saisir à nouveau votre clé API",
+                    "it": "\"Nightscout\" è stato aggiornato alla versione 14. Se hai utilizzato un server \"Nightscout\" esterno devi inserire nuovamente la tua chiave API",
+                    "es": "\"Nightscout\" se actualizó a la versión 14. Si usó un servidor externo \"Nightscout\", debe ingresar su clave API nuevamente",
+                    "pl": "\"Nightscout\" został zaktualizowany do wersji 14. Jeśli korzystałeś z zewnętrznego serwera \"Nightscout\" musisz ponownie wprowadzić swój klucz API",
+                    "zh-cn": "“Nightscout”已更新至版本 14。如果您使用外部“Nightscout”服务器，您必须再次输入您的 API 密钥"
+                },
+                "level": "warn",
+                "linkText": {
+                    "en": "Readme",
+                    "de": "Liesmich",
+                    "ru": "Прочти меня",
+                    "pt": "Leia-me",
+                    "nl": "Leesmij",
+                    "fr": "Lisez-moi",
+                    "it": "Leggimi",
+                    "es": "Léame",
+                    "pl": "Readme",
+                    "zh-cn": "自述文件"
+                },
+                "buttons": [
+                    "agree",
+                    "cancel"
+                ]
+            }
+        ]
     },
     "native": {
         "local": true,

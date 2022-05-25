@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nightscout",
-  "version": "0.11.7",
+  "version": "1.0.0",
   "description": "Provides nightscout server and client for sugar monitoring",
   "author": {
     "name": "bluefox",
@@ -21,7 +21,7 @@
     "url": "https://github.com/ioBroker/ioBroker.nightscout"
   },
   "optionalDependencies": {
-    "canvas": "^2.6.1",
+    "canvas": "^2.9.1",
     "sharp": "~0.24.1"
   },
   "dependencies": {
@@ -36,7 +36,6 @@
   "devDependencies": {
     "@alcalzone/release-script": "^3.5.9",
     "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
-    "@alcalzone/release-script-plugin-license": "^3.5.9",
     "@babel/core": "^7.18.2",
     "@babel/plugin-transform-arrow-functions": "^7.17.12",
     "@babel/plugin-transform-block-scoping": "^7.17.12",
@@ -75,7 +74,10 @@
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit",
     "lint": "eslint",
-    "release": "node node_modules/@alcalzone/release-script/bin/release.js"
+    "release": "release-script",
+    "release-patch": "release-script patch --yes",
+    "release-minor": "release-script minor --yes",
+    "release-major": "release-script major --yes"
   },
   "bugs": {
     "url": "https://github.com/ioBroker/ioBroker.nightscout/issues"

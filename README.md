@@ -88,7 +88,7 @@ You can access your local nightscout server via iot cloud. For that you must ope
 **Remember that cloud access and local access require different API secrets!**
 
 ### In client mode
-You need a running nightscout server instance and it's api accessible via http or https.
+You need a running nightscout server instance, and it's API accessible via http or https.
 
 
 ## Use cases
@@ -137,14 +137,18 @@ sendTo('nightscout.0', 'chart', {
 ```
 
 ## Todo
-- Allow the configuring of the api-secret for foreign nightscout server
+- Allow the configuring of the API-secret for foreign nightscout server
 
 <!--
 	Placeholder for the next version (at the beginning of the line):
-	### __WORK IN PROGRESS__
+	### **WORK IN PROGRESS**
 -->
 
 ## Changelog
+### **WORK IN PROGRESS**
+* (bluefox) BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings
+* (bluefox) BREAKING CHANGE: Own nightscout server updated to v14.x
+
 ### 0.11.7 (2021-05-13)
 * (volkerrichert) Added the resetting of alarm and urgent alarm
 

@@ -218,6 +218,7 @@
         "enabled": "careportal basal",
         "units": "mg/dl",
         "secret": "12345678901234",
+        "remoteSecret": "",
         "timeFormat": 24,
         "language": "",
         "allowUnauthorized": false,

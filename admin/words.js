@@ -721,7 +721,7 @@ systemDictionary = {
     "remote nightscout URL": {
         "en": "remote nightscout URL",
         "de": "externe Nightscout URL",
-        "ru": "URL удаленного ночного видения",
+        "ru": "URL удаленного nightscout",
         "pt": "URL de nightscout remoto",
         "nl": "externe Nightscout URL",
         "fr": "URL de Nightscout",

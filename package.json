@@ -22,7 +22,8 @@
   },
   "optionalDependencies": {
     "canvas": "^2.9.1",
-    "sharp": "~0.24.1"
+    "sharp": "~0.24.1",
+    "nightscout": "14.2.9"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.0",
@@ -30,7 +31,7 @@
     "echarts": "^4.9.0",
     "jsdom": "^19.0.0",
     "moment": "^2.29.3",
-    "nightscout": "14.2.9",
+
     "socket.io-client": "~2.4.0"
   },
   "devDependencies": {

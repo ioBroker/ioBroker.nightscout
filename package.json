@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nightscout",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Provides nightscout server and client for sugar monitoring",
   "author": {
     "name": "bluefox",
@@ -30,7 +30,7 @@
     "echarts": "^4.9.0",
     "jsdom": "^19.0.0",
     "moment": "^2.29.3",
-    "nightscout": "14.2.7",
+    "nightscout": "14.2.8",
     "socket.io-client": "~2.4.0"
   },
   "devDependencies": {

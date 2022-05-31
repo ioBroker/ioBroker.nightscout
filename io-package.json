@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "nightscout",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "news": {
-      "1.0.3": {
+      "1.0.4": {
         "en": "BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings\nBREAKING CHANGE: Own nightscout server updated to v14.x",
         "de": "BREAKING CHANGE: Diese Version unterstützt nur Nightscout 14.x. Sie müssen Ihr API-Geheimnis in den Einstellungen eingeben\nBREAKING CHANGE: Eigener Nightscout-Server auf v14.x aktualisiert",
         "ru": "ГЛАВНОЕ ИЗМЕНЕНИЕ: Эта версия поддерживает только nightscout 14.x. Вы должны ввести свой секрет API в настройках\nГЛАВНОЕ ИЗМЕНЕНИЕ: собственный сервер nightscout обновлен до версии 14.x.",

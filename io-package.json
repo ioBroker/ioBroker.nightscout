@@ -3,18 +3,6 @@
     "name": "nightscout",
     "version": "1.0.1",
     "news": {
-      "1.0.1": {
-        "en": "BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings\nBREAKING CHANGE: Own nightscout server updated to v14.x",
-        "de": "BREAKING CHANGE: Diese Version unterstützt nur Nightscout 14.x. Sie müssen Ihr API-Geheimnis in den Einstellungen eingeben\nBREAKING CHANGE: Eigener Nightscout-Server auf v14.x aktualisiert",
-        "ru": "ГЛАВНОЕ ИЗМЕНЕНИЕ: Эта версия поддерживает только nightscout 14.x. Вы должны ввести свой секрет API в настройках\nГЛАВНОЕ ИЗМЕНЕНИЕ: собственный сервер nightscout обновлен до версии 14.x.",
-        "pt": "BREAKING CHANGE: Esta versão suporta apenas nightcout 14.x. Você deve inserir seu segredo de API nas configurações\nÚLTIMA MUDANÇA: Servidor noturno próprio atualizado para v14.x",
-        "nl": "BAANBREKENDE VERANDERING: Deze versie ondersteunt alleen nightscout 14.x. U moet uw API-geheim invoeren in instellingen\nBREKENDE WIJZIGING: Eigen nightscout-server geüpdatet naar v14.x",
-        "fr": "BREAKING CHANGE : Cette version ne prend en charge que Nightscout 14.x. Vous devez entrer votre secret API dans les paramètres\nCHANGEMENT RUPTURE : Propre serveur nightscout mis à jour vers v14.x",
-        "it": "MODIFICA DI ROTTURA: questa versione supporta solo nightscout 14.x. Devi inserire il tuo segreto API nelle impostazioni\nCAMBIAMENTO ROTANTE: il proprio server nightscout aggiornato alla v14.x",
-        "es": "CAMBIO IMPORTANTE: esta versión solo es compatible con nightscout 14.x. Debe ingresar su API secreta en la configuración\nCAMBIO IMPORTANTE: servidor nightscout propio actualizado a v14.x",
-        "pl": "PRZEŁOMOWA ZMIANA: Ta wersja obsługuje tylko nightscout 14.x. Musisz wpisać swój sekret API w ustawieniach\nKŁOPOCZNA ZMIANA: Własny serwer Nightscout zaktualizowany do wersji 14.x",
-        "zh-cn": "重大更改：此版本仅支持 nightscout 14.x。您必须在设置中输入您的 API 密码\n重大变化：自己的 nightscout 服务器更新到 v14.x"
-      },
       "1.0.0": {
         "en": "BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings\nBREAKING CHANGE: Own nightscout server updated to v14.x",
         "de": "BREAKING CHANGE: Diese Version unterstützt nur Nightscout 14.x. Sie müssen Ihr API-Geheimnis in den Einstellungen eingeben\nBREAKING CHANGE: Eigener Nightscout-Server auf v14.x aktualisiert",

@@ -30,7 +30,7 @@
     "echarts": "^4.9.0",
     "jsdom": "^19.0.0",
     "moment": "^2.29.3",
-    "nightscout": "14.2.5",
+    "nightscout": "14.2.6",
     "socket.io-client": "~2.4.0"
   },
   "devDependencies": {

@@ -22,7 +22,7 @@
   },
   "optionalDependencies": {
     "canvas": "^2.9.1",
-    "sharp": "~0.24.1",
+    "sharp": "~0.30.7",
     "nightscout": "14.2.11"
   },
   "dependencies": {

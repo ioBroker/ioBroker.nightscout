@@ -21,7 +21,7 @@
     "url": "https://github.com/ioBroker/ioBroker.nightscout"
   },
   "optionalDependencies": {
-    "canvas": "^2.9.1",
+    "canvas": "^2.9.3",
     "sharp": "~0.24.1",
     "nightscout": "14.2.11"
   },

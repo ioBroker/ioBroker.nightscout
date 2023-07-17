@@ -186,7 +186,17 @@
           "cancel"
         ]
       }
-    ]
+    ],
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "osDependencies": {
+      "linux": [
+        "mongodb"
+      ]
+    }
   },
   "native": {
     "local": true,
@@ -213,11 +223,7 @@
     "certPrivate": "",
     "certChained": "",
     "licenseAccepted": false,
-    "osDependencies": {
-      "linux": [
-        "mongodb"
-      ]
-    },
+
     "leEnabled": false
   },
   "objects": [],

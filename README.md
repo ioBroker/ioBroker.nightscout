@@ -34,10 +34,10 @@
    use or non-use of the information provided or by the use of incorrect and incomplete information,
    are excluded in principle, provided that the translator / The authors are not proven to be intentionally or grossly negligent.
    All offers are non-binding. The translators / authors expressly reserve the right to change,
-   supplement or delete parts of the pages or the entire offer without prior notice, or to discontinue publication temporarily or permanently.
+   supplement or delete parts of the pages or the entire offer without a prior notice, or to discontinue publication temporarily or permanently.
 
 !> Do-It-Yourself.
-   DIY project means in our case, that there is no company from which one can buy a finished, functioning system.
+   DIY project means, in our case, that there is no company from which one can buy a finished, functioning system.
    Elements of the system are developed and put together by participants of the project.
    They will be provided to you free of charge.
    DIY means to you that you have to do your part to make the system work for you.
@@ -46,7 +46,7 @@
 ## Description
 This adapter starts the nightscout server from this repository: https://github.com/nightscout/cgm-remote-monitor or uses such a server remotely.
 
-For the detailed information read Nightscout documentation [here](https://nightscout-user-guide.readthedocs.io/).
+For detailed information, read Nightscout documentation [here](https://nightscout-user-guide.readthedocs.io/).
 
 See [requirements](#requirements).
 
@@ -55,11 +55,11 @@ In case you are using local mongoDB the connection string looks like `mongodb://
 ## Requirements
 ### In server mode
 #### Installed and running mongo DB.
-It could be cloud DB or local DB, that could be installed from here: https://www.mongodb.com/download-center/community.
+It could be a cloud DB or local DB that could be installed from here: https://www.mongodb.com/download-center/community.
 
 Under Debian the MongoDB could be installed as: `apt-get install mongodb` or `sudo apt-get install mongodb` if the user is not `root`.
 
-Following commands could work for Debian if `apt-get install mongodb` could not find a package:
+The following commands could work for Debian if `apt-get install mongodb` could not find a package:
 
 ```
 wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
@@ -77,7 +77,7 @@ You can write the values into https://nightscout.iobroker.in and the **secret fr
 
 ![config](img/config.png)
 
-To push the values into local nightscout with xDrip+ you must enter in Basis URL `https://<SEE IoT CONFIG API-secret>@nightscout.iobroker.in/api/v1/`.
+To push the values into local nightscout with `xDrip+` you must enter in Basis URL `https://<SEE IoT CONFIG API-secret>@nightscout.iobroker.in/api/v1/`.
 
 Like here:
 
@@ -88,7 +88,7 @@ You can access your local nightscout server via iot cloud. For that you must ope
 **Remember that cloud access and local access require different API secrets!**
 
 ### In client mode
-You need a running nightscout server instance, and it's API accessible via http or https.
+You need a running nightscout server instance, and its API is accessible via http or https.
 
 
 ## Use cases
@@ -115,7 +115,7 @@ on('nightscout.0.data.mgdl', obj => {
     }    
 });
 ```
-**Notice: to get the chart as an image the phantomjs adapter must be installed and running**
+**Notice: to get the chart as an image, the phantomjs adapter must be installed and running**
 
 ### Send charts via telegram or email
 You can write a script:
@@ -145,6 +145,10 @@ sendTo('nightscout.0', 'chart', {
 -->
 
 ## Changelog
+### **WORK IN PROGRESS**
+* (bluefox) Made it compatible with js-controller 5.x
+* (bluefox) Added json config
+
 ### 1.0.6 (2022-05-31)
 * (bluefox) BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings
 * (bluefox) BREAKING CHANGE: Own nightscout server updated to v14.x
@@ -178,7 +182,7 @@ sendTo('nightscout.0', 'chart', {
 * (Volker Richert) Fixed last Updated value
 
 ### 0.9.6 (2019-09-14)
-* (bluefox) used newer version of nightscout
+* (bluefox) used a newer version of nightscout
 
 ### 0.9.4 (2019-08-10)
 * (bluefox) initial release

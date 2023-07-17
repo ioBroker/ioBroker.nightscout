@@ -20,9 +20,9 @@ let client;
 
 function readRoles() {
     const query = {
-        url:     URL + '/api/v2/authorization/subjects',
+        url:     `${URL}/api/v2/authorization/subjects`,
         method:  'GET',
-        headers: {'api-secret': secret}
+        headers: {'api-secret': secret},
     };
 
     return axios(query)
@@ -45,14 +45,16 @@ function checkRole() {
                 return accessToken;
             } else {
                 const query = {
-                    url: URL + '/api/v2/authorization/subjects',
+                    url: `${URL}/api/v2/authorization/subjects`,
                     method: 'POST',
                     body: 'name=phantomjs&roles%5B%5D=readable&notes=',
                     headers: {
                         'api-secret': secret,
                         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
                     }
-                };                    // add phantomjs
+                };
+
+                // add phantomjs
                 return axios(query)
                     .then(response => {
                         const body = response.data;
@@ -105,7 +107,7 @@ function startAdapter(options) {
                         checkRole()
                             .then(token => {
                                 adapter.sendTo('phantomjs.0', 'send', {
-                                    url:                    URL + '/?token=' + token,
+                                    url:                    `${URL}/?token=${token}`,
                                     output:                 'nightscout.png',  // default value
                                     width:                  800,            // default value
                                     height:                 600,            // default value
@@ -122,24 +124,24 @@ function startAdapter(options) {
                                     online:                 true            // default value
                                 }, result => {
                                     if (!result || result.error) {
-                                        adapter.log.error('Cannot render website: ' + JSON.stringify(result && result.error));
+                                        adapter.log.error(`Cannot render website: ${JSON.stringify(result && result.error)}`);
                                         adapter.setState('trigger.picture', false, true);
                                     } else {
                                         adapter.setState('trigger.picture', true, true);
                                     }
                                     if (result && result.stderr) {
-                                        adapter.log.error('Cannot render website: ' + result.stderr);
+                                        adapter.log.error(`Cannot render website: ${result.stderr}`);
                                     }
                                     if (result && result.stdout) {
-                                        adapter.log.debug('Nightscout rendered: ' + result.stdout);
+                                        adapter.log.debug(`Nightscout rendered: ${result.stdout}`);
                                     }
-                                    adapter.log.debug('Nightscout rendered: ' + (result && result.output));
+                                    adapter.log.debug(`Nightscout rendered: ${result && result.output}`);
                                     adapter.log.debug('Picture can be find under phantomjs.0.pictures.nightscout_png');
                                 });
                             })
                             .catch(e => {
                                 adapter.setState('trigger.picture', false, true);
-                                adapter.log.error('Cannot enable phantomjs: ' + e);
+                                adapter.log.error(`Cannot enable phantomjs: ${e}`);
                             });
                     }
                 });
@@ -201,17 +203,23 @@ function processMessage(obj) {
                 }
             }
 
-            query.url = query.url.replace(/secret=[^&]*/, 'secret=' + secret);
+            query.url = query.url.replace(/secret=[^&]*/, `secret=${secret}`);
 
-            adapter.log.debug('Request from IoT: ' + JSON.stringify(query));
+            adapter.log.debug(`Request from IoT: ${JSON.stringify(query)}`);
             axios(query)
                 .then(response => {
                     const body = response.data;
-                    adapter.log.debug('Response to IoT: ' + JSON.stringify(body));
-                    adapter.sendTo(obj.from, obj.command, id ? {id, body, 'content-type': state && state.headers && state.headers['content-type']} : body, obj.callback);
+                    adapter.log.debug(`Response to IoT: ${JSON.stringify(body)}`);
+                    adapter.sendTo(obj.from, obj.command, id ?
+                        {
+                            id,
+                            body,
+                            'content-type': state && state.headers && state.headers['content-type']
+                        } : body,
+                    obj.callback,
+                    );
                 });
-        } else
-        if (obj.command === 'chart') {
+        } else if (obj.command === 'chart') {
             // expected:
             // {
             //      from: timestamp // default now - 3 hours
@@ -228,7 +236,7 @@ function processMessage(obj) {
                 width:  720,
                 height: 480,
                 format: 'png',
-                lang:   adapter.config.language
+                lang:   adapter.config.language,
             };
 
             try {
@@ -259,39 +267,31 @@ function processMessage(obj) {
                         adapter.sendTo(obj.from, obj.command, { error: 'No body' }, obj.callback);
                     }
                 })
-                .catch(error => adapter.sendTo(obj.from, obj.command, { error: 'Cannot fetch data: ' + error}, obj.callback));
+                .catch(error => adapter.sendTo(obj.from, obj.command, { error: `Cannot fetch data: ${error}`}, obj.callback));
         }
     }
 }
 
 function start() {
     if (adapter.config.local) {
-        if (!adapter.config.language) {
-            adapter.getForeignObject('system.config', (err, obj) => {
-                adapter.config.language = (obj && obj.common && obj.common.language) || 'en';
-                Nightscout.startServer(adapter)
-                    .then(() =>
-                        setTimeout(() => {
-                            client = new NightscoutClient(adapter, URL, secret);
-                            client.on('connection', connected => adapter.setState('info.connection', connected, true));
-                        }, 1000));
-            });
-        } else {
-            Nightscout.startServer(adapter).then(() =>
+        Nightscout.startServer(adapter)
+            .then(() =>
                 setTimeout(() => {
                     client = new NightscoutClient(adapter, URL, secret);
-                    client.on('connection', connected => adapter.setState('info.connection', connected, true));
+                    client.on('connection', connected =>
+                        adapter.setState('info.connection', connected, true));
                 }, 1000));
-        }
     } else {
         client = new NightscoutClient(adapter, URL, secret);
-        client.on('connection', connected => adapter.setState('info.connection', connected, true));
+        client.on('connection', connected =>
+            adapter.setState('info.connection', connected, true));
     }
 }
 
 function main() {
     adapter.setState('info.connection', false, true);
     const shasum = crypto.createHash('sha1');
+
     if (adapter.config.local) {
         if (adapter.config.secret) {
             secret = shasum.update(adapter.config.secret).digest('hex');
@@ -307,36 +307,38 @@ function main() {
     }
 
     adapter.getForeignObject('system.config', (err, obj) => {
+        adapter.config.language = adapter.config.language || (obj && obj.common && obj.common.language) || 'en';
+
         if (!obj || !obj.common || !obj.common.defaultHistory) {
             adapter.log.warn('No default history selected, so charts will not work');
         } else {
             adapter.__defaultHistory = obj.common.defaultHistory;
         }
-    });
 
-    if (adapter.config.local) {
-        URL = `http${adapter.config.secure ? 's' : ''}://${adapter.config.bind}:${adapter.config.port}`;
-    } else {
-        URL = adapter.config.url;
-    }
+        if (adapter.config.local) {
+            URL = `http${adapter.config.secure ? 's' : ''}://${adapter.config.bind}:${adapter.config.port}`;
+        } else {
+            URL = adapter.config.url;
+        }
 
-    adapter.subscribeStates('trigger.picture');
+        adapter.subscribeStates('trigger.picture');
 
-    if (!adapter.config.licenseAccepted) {
-        adapter.log.warn('Please go to configuration page and read disclaimer');
-        return;
-    }
+        if (!adapter.config.licenseAccepted) {
+            adapter.log.warn('Please go to configuration page and read disclaimer');
+            return;
+        }
 
-    if (adapter.config.secure) {
-        // Load certificates
-        adapter.getCertificates((err, certificates, leConfig) => {
-            adapter.config.certificates = certificates;
-            adapter.config.leConfig     = leConfig;
+        if (adapter.config.secure) {
+            // Load certificates
+            adapter.getCertificates((err, certificates, leConfig) => {
+                adapter.config.certificates = certificates;
+                adapter.config.leConfig     = leConfig;
+                start();
+            });
+        } else {
             start();
-        });
-    } else {
-        start();
-    }
+        }
+    });
 }
 
 // @ts-ignore parent is a valid property on module

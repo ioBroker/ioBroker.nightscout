@@ -708,7 +708,7 @@ systemDictionary = {
     "Listen on all IPs": {                           "en": "Listen on all IPs",                               "de": "Alle IPs zulassen",                               "ru": "Открыть для всех IP адресов",                     "pt": "Ouça todos os IPs",                               "nl": "Luister op alle IP's",                            "fr": "Écoutez sur toutes les adresses IP",              "it": "Ascolta su tutti gli IP",                         "es": "Escuchar en todas las direcciones IP",            "pl": "Posłuchaj na wszystkich IP",                      "zh-cn": "监听所有IP"},
     "use integrated nightscout server": {
         "en": "use integrated nightscout server",
-        "de": "Verwenden Sie den integrierten Nightcout-Server",
+        "de": "Den integrierten Nightcout-Server verwenden",
         "ru": "использовать встроенный сервер nightcout",
         "pt": "use o servidor noturno integrado",
         "nl": "gebruik de geïntegreerde nightscout-server",

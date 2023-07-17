@@ -1,0 +1,339 @@
+{
+  "i18n": true,
+  "type": "tabs",
+  "items": {
+    "_settings": {
+      "type": "panel",
+      "label": "Settings",
+      "items": {
+        "licenseAccepted": {
+          "type": "license",
+          "title": "Disclaimer",
+          "texts": [
+            "license_text_1",
+            "license_text_2",
+            "license_text_3",
+            "license_text_4",
+            "license_text_5"
+          ],
+          "checkBox": "Have read and understood"
+        },
+        "local": {
+          "type": "checkbox",
+          "label": "use integrated nightscout server",
+          "sm": 12
+        },
+        "url": {
+          "type": "text",
+          "label": "remote nightscout URL",
+          "sm": 12,
+          "lg": 4,
+          "hidden": "!!data.local"
+        },
+        "remoteSecret": {
+          "type": "text",
+          "label": "remote API secret",
+          "sm": 12,
+          "lg": 4,
+          "hidden": "!!data.local"
+        },
+        "bind": {
+          "newLine": true,
+          "type": "ip",
+          "label": "Local IP",
+          "sm": 8,
+          "lg": 4,
+          "hidden": "!data.local"
+        },
+        "port": {
+          "type": "number",
+          "label": "Port",
+          "min": 1,
+          "max": 65535,
+          "sm": 4,
+          "lg": 1,
+          "hidden": "!data.local"
+        },
+        "secure": {
+          "newLine": true,
+          "type": "checkbox",
+          "label": "Secure(HTTPS)",
+          "sm": 12,
+          "md": 6,
+          "lg": 2,
+          "hidden": "!data.local"
+        },
+        "_certs": {
+          "type": "certificates",
+          "newLine": true,
+          "hidden": "!data.secure || !data.local",
+          "sm": 12
+        }
+      }
+    },
+    "_mainSettings": {
+      "type": "panel",
+      "label": "Main settings",
+      "hidden": "!data.local",
+      "items": {
+        "licenseAccepted": {
+          "type": "license",
+          "title": "Disclaimer",
+          "texts": [
+            "license_text_1",
+            "license_text_2",
+            "license_text_3",
+            "license_text_4",
+            "license_text_5"
+          ],
+          "checkBox": "Have read and understood"
+        },
+        "mongo": {
+          "label": "Mongo connection string",
+          "type": "text",
+          "sm": 12,
+          "lg": 4
+        },
+        "secret": {
+          "newLine": true,
+          "label": "API Secret",
+          "type": "text",
+          "help": "minimum 12 characters",
+          "sm": 8,
+          "lg": 4
+        },
+        "allowUnauthorized": {
+          "label": "Allow unauthorized users",
+          "type": "checkbox",
+          "sm": 4,
+          "lg": 3
+        },
+        "language": {
+          "newLine": true,
+          "type": "language",
+          "system": true,
+          "label": "Language",
+          "sm": 4,
+          "lg": 2
+        },
+        "units": {
+          "type": "select",
+          "label": "Units",
+          "options": [
+            {
+              "value": "mg/dl",
+              "label": "mg/dl"
+            },
+            {
+              "value": "mmol",
+              "label": "mmol"
+            }
+          ],
+          "sm": 4,
+          "lg": 2
+        }
+      }
+    },
+    "_components": {
+      "type": "panel",
+      "label": "Components",
+      "hidden": "!data.local",
+      "items": {
+        "licenseAccepted": {
+          "type": "license",
+          "title": "Disclaimer",
+          "texts": [
+            "license_text_1",
+            "license_text_2",
+            "license_text_3",
+            "license_text_4",
+            "license_text_5"
+          ],
+          "checkBox": "Have read and understood"
+        },
+        "careportal": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Careportal"
+        },
+        "rawbg": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Raw BG"
+        },
+        "iob": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Insulin-on-Board"
+        },
+        "delta": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "BG Delta"
+        },
+        "direction": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "BG Direction"
+        },
+        "upbat": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Uploader Battery"
+        },
+        "timeago": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Time Ago"
+        },
+        "devicestatus": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Device Status"
+        },
+        "errorcodes": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "CGM Error Codes"
+        },
+        "ar2": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "AR2 Forecasting"
+        },
+        "simplealarms": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Simple BG Alarms"
+        },
+        "profile": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Treatment Profile"
+        },
+        "boluscalc": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Bolus Wizard"
+        },
+        "food": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Custom Foods"
+        },
+        "cob": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Carbs-on-Board"
+        },
+        "bwp": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Bolus Wizard Preview"
+        },
+        "cage": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Cannula Age"
+        },
+        "sage": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Sensor Age"
+        },
+        "iage": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Insulin Age"
+        },
+        "bage": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Battery Age"
+        },
+        "treatmentnotify": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Treatment Notifications"
+        },
+        "basal": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Basal Profile"
+        },
+        "bridge": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Share2Nightscout bridge"
+        },
+        "mmconnect": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "MiniMed Connect bridge"
+        },
+        "pump": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Pump Monitoring"
+        },
+        "openaps": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "OpenAPS"
+        },
+        "loop": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Loop"
+        },
+        "override": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "Override Mode"
+        },
+        "xdrip-js": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "xDrip-js"
+        },
+        "cors": {
+          "type": "checkbox",
+          "sm": 2,
+          "label": "CORS"
+        }
+      }
+    },
+    "_userDefined": {
+      "type": "panel",
+      "hidden": "!data.local",
+      "label": "Custom settings",
+      "items": {
+        "licenseAccepted": {
+          "type": "license",
+          "title": "Disclaimer",
+          "texts": [
+            "license_text_1",
+            "license_text_2",
+            "license_text_3",
+            "license_text_4",
+            "license_text_5"
+          ],
+          "checkBox": "Have read and understood"
+        },
+        "_static": {
+          "type": "staticLink",
+          "label": "The possible environment variables could be found here",
+          "href": "https://github.com/nightscout/cgm-remote-monitor#environment"
+        },
+        "envs": {
+          "newLine": true,
+          "type": "table",
+          "items": [
+            {"type": "text", "width": "50%", "title": "Name", "attr": "name", "default": ""},
+            {"type": "text", "width": "50%", "title": "Value", "attr": "value", "default": ""}
+          ]
+        }
+      }
+    }
+  }
+}

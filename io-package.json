@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "nightscout",
-    "version": "1.0.6",
+    "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "Made it compatible with js-controller 5.x\nAdded json config",
+        "de": "Kompatibel mit js-controller 5.x\nHinzugefügt json config",
+        "ru": "Совместим с js-controller 5.x\nДобавлено json config",
+        "pt": "Tornado compatível com js-controller 5.x\nAdicionado json config",
+        "nl": "Maakte het compatibel met Js-controller 5\n_",
+        "fr": "Il est compatible avec js-controller 5.x\nAjouté json config",
+        "it": "Ha reso compatibile con js-controller 5.x\nAggiunto json config",
+        "es": "Lo hizo compatible con js-controller 5.x\nAñadido json config",
+        "pl": "Umożliwia to js-controller 5.x\nAdded json configig",
+        "uk": "Виготовлений сумісний з js-controller 5.x\nДодано json config",
+        "zh-cn": "马约恩岛与控制丛林相容。\n增编"
+      },
       "1.0.6": {
         "en": "BREAKING CHANGE: This version supports only nightscout 14.x. You must enter your API secret in settings\nBREAKING CHANGE: Own nightscout server updated to v14.x",
         "de": "BREAKING CHANGE: Diese Version unterstützt nur Nightscout 14.x. Sie müssen Ihr API-Geheimnis in den Einstellungen eingeben\nBREAKING CHANGE: Eigener Nightscout-Server auf v14.x aktualisiert",
@@ -74,18 +87,6 @@
         "es": "se corrigió la marca de tiempo de la notificación",
         "pl": "poprawiono sygnaturę czasową powiadomienia",
         "zh-cn": "更正了通知时间戳"
-      },
-      "0.11.3": {
-        "en": "cage & sage will be updated based on current data if not treatments available",
-        "de": "Käfig & Salbei werden basierend auf den aktuellen Daten aktualisiert, wenn keine Behandlungen verfügbar sind",
-        "ru": "Клетка и шалфей будут обновлены на основе текущих данных, если не доступны методы лечения",
-        "pt": "gaiola e sálvia serão atualizados com base nos dados atuais, se não houver tratamentos disponíveis",
-        "nl": "kooi & salie zal worden bijgewerkt op basis van de huidige gegevens als er geen behandelingen beschikbaar zijn",
-        "fr": "la cage et la sauge seront mises à jour sur la base des données actuelles si aucun traitement n'est disponible",
-        "it": "gabbia e salvia saranno aggiornate in base ai dati attuali se non sono disponibili trattamenti",
-        "es": "la jaula y la salvia se actualizarán según los datos actuales si no hay tratamientos disponibles",
-        "pl": "klatka i szałwia zostaną zaktualizowane na podstawie bieżących danych, jeśli nie będą dostępne zabiegi",
-        "zh-cn": "如果没有可用的治疗方法，笼子和鼠尾草将根据当前数据进行更新"
       }
     },
     "title": "Nightscout server",
@@ -223,7 +224,6 @@
     "certPrivate": "",
     "certChained": "",
     "licenseAccepted": false,
-
     "leEnabled": false
   },
   "objects": [],

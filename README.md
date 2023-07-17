@@ -145,7 +145,7 @@ sendTo('nightscout.0', 'chart', {
 -->
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.1.0 (2023-07-17)
 * (bluefox) Made it compatible with js-controller 5.x
 * (bluefox) Added json config
 

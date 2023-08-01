@@ -29,7 +29,7 @@
     "@iobroker/adapter-core": "^2.6.8",
     "@iobroker/webserver": "^0.3.6",
     "axios": "^1.4.0",
-    "echarts": "^5.4.2",
+    "echarts": "^5.4.3",
     "jsdom": "^22.1.0",
     "moment": "^2.29.4",
     "socket.io-client": "~2.5.0"

@@ -26,7 +26,7 @@
     "nightscout": "14.2.11"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.6.8",
+    "@iobroker/adapter-core": "^3.0.4",
     "@iobroker/webserver": "^0.3.6",
     "axios": "^1.4.0",
     "echarts": "^5.4.2",

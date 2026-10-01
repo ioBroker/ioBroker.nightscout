@@ -40,7 +40,7 @@
     "@babel/core": "^7.22.9",
     "@babel/plugin-transform-arrow-functions": "^7.22.5",
     "@babel/plugin-transform-block-scoping": "^7.22.5",
-    "@babel/plugin-transform-classes": "^7.22.6",
+    "@babel/plugin-transform-classes": "^8.0.5",
     "@babel/plugin-transform-template-literals": "^7.22.5",
     "@iobroker/testing": "^4.1.0",
     "@types/chai": "^4.3.5",
